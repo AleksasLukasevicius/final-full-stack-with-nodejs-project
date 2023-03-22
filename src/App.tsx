@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { Footer } from "./components";
 
 export const App = () => {
   return (
@@ -10,6 +11,8 @@ export const App = () => {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
       </header>
+
+      <Footer />
     </div>
   );
 };
