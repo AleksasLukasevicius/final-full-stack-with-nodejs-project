@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match Footer snapshot 1`] = `
+<footer
+  className="MuiBox-root css-0"
+>
+  <h6
+    aria-label="current year"
+    className="MuiTypography-root MuiTypography-h6 MuiTypography-alignCenter css-1oi36s0-MuiTypography-root"
+  >
+    © 2023 - All rights reserved
+  </h6>
+</footer>
+`;
+
+exports[`Footer should match Footer snapshot test 1`] = `
+<div>
+  <footer
+    class="MuiBox-root css-0"
+  >
+    <h6
+      aria-label="current year"
+      class="MuiTypography-root MuiTypography-h6 MuiTypography-alignCenter css-1oi36s0-MuiTypography-root"
+    >
+      © 2023 - All rights reserved
+    </h6>
+  </footer>
+</div>
+`;
