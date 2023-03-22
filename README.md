@@ -4,14 +4,7 @@ Final Full-Stack with Node.js Project with React, Typescript and Material UI for
 
 Due March 29, 2023 6:00 PM Closes March 29, 2023 6:00 PM
 
-## Instructions
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-Baigiamasis projektas
+## Baigiamasis projektas
 
 Šios projekto metu reikės sukurti programą naudojant React, NodeJS Express ir MongoDB arba MySQL. Programos tikslas - leisti renginių organizavimu užsiimančiai įmonei, registruoti telefonu paskambinusius asmenis į renginį.
 
@@ -47,3 +40,10 @@ Dizainas, kurį sukursite patys. Rekomenduotina naudoti Material UI bei Material
 Stabilumas. Rekomenduotina naudoti Jest arba react-testing-library bei TypeScript.
 
 Papildomas akcentas semantikai bei prieinamumui (angl. accessibility).
+
+## Instructions
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
