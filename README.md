@@ -1,6 +1,6 @@
 # Final Full-Stack with Node.js Project
 
-Final Full-Stack with Node.js Project with React, Typescript and Material UI for for a company engaged in organizing events
+Final Full-Stack with Node.js Project with React, Typescript and Material UI for a company engaged in organizing events
 
 Due March 29, 2023 6:00 PM Closes March 29, 2023 6:00 PM
 
