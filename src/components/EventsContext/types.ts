@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export type TEvent = {
   id: number;
   title: string | null;
@@ -9,5 +11,16 @@ export type TEvent = {
 
 export type TEventsContext = {
   events: Readonly<TEvent[]>;
-  dispatch(): void;
+  dispatch: Dispatch<TEventsAction>;
+};
+
+export type TEventsAction = {
+  type: "add-event" | "delete-event" | "set-event";
+  payload: {
+    id?: number;
+  };
+};
+
+export type TEventsState = {
+  events: Readonly<TEvent[]>;
 };
