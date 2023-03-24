@@ -1,7 +1,15 @@
 import { useContext } from "react";
-import { Events, EventsContext, Footer, Users, UserEvents, Home } from "..";
+import {
+  Events,
+  EventsContext,
+  Footer,
+  Users,
+  UserEvents,
+  Home,
+  Header,
+  NotFoundPage,
+} from "..";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Header } from "../Header";
 
 export const MainRouter = () => {
   const { events, dispatch } = useContext(EventsContext);
@@ -15,6 +23,7 @@ export const MainRouter = () => {
         <Route path="/events" element={<Events />} />
         <Route path="/users" element={<Users />} />
         <Route path="/user-events" element={<UserEvents />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <Footer />

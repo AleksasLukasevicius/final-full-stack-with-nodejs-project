@@ -17,11 +17,11 @@ export const Home = () => {
   return (
     <main>
       <h1>Welcome</h1>
-      <h2>Home page</h2>
+      <h2>Manager registration</h2>
 
       <form action="submit" method="post" onSubmit={handleFormSubmit}>
         <fieldset>
-          <legend>User registration</legend>
+          <legend>Manager registration</legend>
 
           <label htmlFor="email">e-mail</label>
           <input
