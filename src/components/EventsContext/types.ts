@@ -2,9 +2,9 @@ import { Dispatch } from "react";
 
 export type TEvent = {
   id: number;
-  title: string | null;
-  date: string | null;
-  location: string | null;
+  name: string | null;
+  event_date: string | null;
+  location?: string | null;
   description?: string | null;
   image?: string;
 };
@@ -17,7 +17,7 @@ export type TEventsContext = {
 export type TEventsAction = {
   type: "add-event" | "delete-event" | "set-event";
   payload: {
-    id?: number;
+    eventId?: number;
   };
 };
 
