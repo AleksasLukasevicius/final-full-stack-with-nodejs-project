@@ -6,7 +6,7 @@ export const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Box component="footer">
+    <Box component="footer" marginTop="auto">
       <Typography
         aria-label="current year"
         variant="h6"

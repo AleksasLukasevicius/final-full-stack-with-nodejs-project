@@ -1,18 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { Footer } from "./components";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { useReducer } from "react";
+import { EventsContext, eventsReducer, MainRouter } from "./components";
 
 export const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
+  const [state, dispatch] = useReducer(eventsReducer, {
+    events: [],
+  });
 
-      <Footer />
-    </div>
+  return (
+    <EventsContext.Provider value={{ ...state, dispatch }}>
+      <MainRouter />
+    </EventsContext.Provider>
   );
 };
