@@ -23,7 +23,7 @@ export const Header: FC = () => {
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        <Typography variant="h3">Alex Shop</Typography>
+        <Typography variant="h3">for your best events</Typography>
       </Grid>
 
       <Grid item xs={12} sm={4}>
@@ -45,15 +45,13 @@ export const Header: FC = () => {
               Home
             </Typography>
           </Link>
-          <Link to="/products">
+          <Link to="/events">
             <Typography aria-label="products link" variant="h6">
-              Products
+              Events
             </Typography>
           </Link>
-          <Link to="/cart" aria-label="cart-link">
-            <Typography variant="h6">
-              Cart {events.length > 0 && `(${events.length})`}
-            </Typography>
+          <Link to="/users" aria-label="users">
+            <Typography variant="h6">Users</Typography>
           </Link>
         </Grid>
       </Grid>
