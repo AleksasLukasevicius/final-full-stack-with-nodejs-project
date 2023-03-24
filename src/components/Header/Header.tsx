@@ -23,7 +23,7 @@ export const Header: FC = () => {
       </Grid>
 
       <Grid item xs={12} sm={4}>
-        <Typography variant="h3">for your best events</Typography>
+        <Typography variant="h3">your best events</Typography>
       </Grid>
 
       <Grid item xs={12} sm={4}>
