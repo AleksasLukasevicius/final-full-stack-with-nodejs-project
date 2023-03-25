@@ -9,6 +9,7 @@ import {
   Header,
   NotFoundPage,
   Register,
+  Home,
 } from "..";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -30,6 +31,7 @@ export const MainRouter = () => {
         <Header />
 
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/events" element={<Events />} />

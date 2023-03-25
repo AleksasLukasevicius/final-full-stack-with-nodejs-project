@@ -5,7 +5,7 @@ export const EventsList = () => {
   return (
     <Autocomplete
       disablePortal
-      aria-label="events-list"
+      aria-label="events list"
       options={top100Films}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Event" />}

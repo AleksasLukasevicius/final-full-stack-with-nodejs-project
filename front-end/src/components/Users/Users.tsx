@@ -7,7 +7,7 @@ export const Users = () => {
 
   return (
     <Grid component={"main"} maxWidth={"75rem"}>
-      <Typography variant="h1">Users</Typography>
+      <Typography variant="h1">Registered Users</Typography>
       <UsersList />
       <Button
         variant="contained"

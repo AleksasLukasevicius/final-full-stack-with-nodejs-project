@@ -1,5 +1,5 @@
 import { Logo } from "../Logo/Logo";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FC, useContext } from "react";
 import { Grid, Typography } from "@mui/material";
 import { EventsContext } from "../EventsContext";
@@ -17,9 +17,9 @@ export const Header: FC = () => {
       alignItems="center"
     >
       <Grid item xs={12} sm={4}>
-        <Link to="/">
+        <NavLink to="/">
           <Logo />
-        </Link>
+        </NavLink>
       </Grid>
 
       <Grid item xs={12} sm={4}>
@@ -40,7 +40,7 @@ export const Header: FC = () => {
           //   },
           // }}
         >
-          <Link to="/login">
+          <NavLink to="/login">
             <Typography
               component={"a"}
               aria-label="login link"
@@ -48,8 +48,8 @@ export const Header: FC = () => {
             >
               Login
             </Typography>
-          </Link>
-          <Link to="/register">
+          </NavLink>
+          <NavLink to="/register">
             <Typography
               component={"a"}
               aria-label="register-link"
@@ -57,8 +57,8 @@ export const Header: FC = () => {
             >
               Register
             </Typography>
-          </Link>
-          <Link to="/events">
+          </NavLink>
+          <NavLink to="/events">
             <Typography
               component={"a"}
               aria-label="products link"
@@ -66,8 +66,8 @@ export const Header: FC = () => {
             >
               Events
             </Typography>
-          </Link>
-          <Link to="/users">
+          </NavLink>
+          <NavLink to="/users">
             <Typography
               component={"a"}
               aria-label="users link"
@@ -75,7 +75,7 @@ export const Header: FC = () => {
             >
               Users
             </Typography>
-          </Link>
+          </NavLink>
         </Grid>
       </Grid>
     </Grid>

@@ -19,7 +19,7 @@ export const Register = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h1">Regeister new User</Typography>
+        <Typography variant="h1">Register new user</Typography>
       </Grid>
 
       <Grid item padding={2}></Grid>
