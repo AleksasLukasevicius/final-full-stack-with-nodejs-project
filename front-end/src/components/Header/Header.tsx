@@ -41,7 +41,7 @@ export const Header: FC = () => {
           // }}
         >
           <Link to="/login">
-            <Typography component={"a"} aria-label="login-link" variant="h6">
+            <Typography component={"a"} aria-label="login link" variant="h6">
               Login
             </Typography>
           </Link>
@@ -56,7 +56,7 @@ export const Header: FC = () => {
             </Typography>
           </Link>
           <Link to="/users">
-            <Typography component={"a"} aria-label="users-link" variant="h6">
+            <Typography component={"a"} aria-label="users link" variant="h6">
               Users
             </Typography>
           </Link>
