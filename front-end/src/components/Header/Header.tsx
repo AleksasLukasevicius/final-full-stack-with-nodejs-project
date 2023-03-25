@@ -41,22 +41,38 @@ export const Header: FC = () => {
           // }}
         >
           <Link to="/login">
-            <Typography component={"a"} aria-label="login link" variant="h6">
+            <Typography
+              component={"a"}
+              aria-label="login link"
+              variant="button"
+            >
               Login
             </Typography>
           </Link>
           <Link to="/register">
-            <Typography component={"a"} aria-label="register-link" variant="h6">
+            <Typography
+              component={"a"}
+              aria-label="register-link"
+              variant="button"
+            >
               Register
             </Typography>
           </Link>
           <Link to="/events">
-            <Typography component={"a"} aria-label="products link" variant="h6">
+            <Typography
+              component={"a"}
+              aria-label="products link"
+              variant="button"
+            >
               Events
             </Typography>
           </Link>
           <Link to="/users">
-            <Typography component={"a"} aria-label="users link" variant="h6">
+            <Typography
+              component={"a"}
+              aria-label="users link"
+              variant="button"
+            >
               Users
             </Typography>
           </Link>
