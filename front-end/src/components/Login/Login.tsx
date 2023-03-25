@@ -1,4 +1,10 @@
-import { FormEventHandler, useState } from "react";
+import {
+  type FC,
+  FormEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   Button,
   Grid,
@@ -10,21 +16,30 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-
+import axios from "axios";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { AuthContext } from "../AuthContext";
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
-  const [userData, setUserData] = useState({ email: "", password: "" });
+export const Login: FC = () => {
+  const { setAuth } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [successMsg, setSuccessMsg] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleUserDataChange = (value: string, key: "email" | "password") => {
-    setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
-  };
-  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
+  // const [userData, setUserData] = useState({ name: "", password: "" });
+  // const handleUserDataChange = (value: string, key: "name" | "password") => {
+  //   setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
+  // };
+  // const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  //   event.preventDefault();
 
-    console.info(userData);
-  };
+  //   console.info(userData);
+  // };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -33,9 +48,36 @@ export const Login = () => {
     event.preventDefault();
   };
 
+  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    axios
+      .post("http://localhost:5000/login-admin", { username, password })
+      .then((response) => {
+        const token = response.data.token;
+        setAuth(token);
+        sessionStorage.setItem("token", token);
+        setUsername("");
+        setPassword("");
+        setSuccessMsg(true);
+        navigate("/register");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.status === 400) {
+          setErrorMsg("Login failed. Incorect username or password.");
+        }
+      });
+  };
+
+  useEffect(() => {
+    setErrorMsg("");
+    setSuccessMsg(false);
+  }, [username, password]);
+
   return (
     <Grid component={"main"}>
-      <Typography variant="h1">Login</Typography>
+      {/* <Typography variant="h1">Login</Typography> */}
 
       <Grid
         component="form"
@@ -49,16 +91,13 @@ export const Login = () => {
           </Typography>
 
           <TextField
-            aria-label="email-input"
-            label="Email"
-            type="email"
+            aria-label="manager-name-input"
+            label="Name"
             required
             autoComplete="current-email"
             variant="standard"
-            value={userData.email}
-            onChange={(event) =>
-              handleUserDataChange(event.target.value, "email")
-            }
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
           />
 
           {/* <TextField
@@ -79,14 +118,12 @@ export const Login = () => {
               Password
             </InputLabel>
             <Input
-              aria-label="password-input"
+              aria-label="manager-password-input"
               type={showPassword ? "text" : "password"}
               required
               autoComplete="current-password"
-              value={userData.password}
-              onChange={(event) =>
-                handleUserDataChange(event.target.value, "password")
-              }
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -102,10 +139,16 @@ export const Login = () => {
           </FormControl>
 
           <Button type="submit" variant="outlined">
-            Submit
+            Login
           </Button>
         </Grid>
       </Grid>
+
+      {successMsg ? (
+        <Typography color="success">Successfully logged in</Typography>
+      ) : (
+        errorMsg && <Typography color="error">{errorMsg}</Typography>
+      )}
     </Grid>
   );
 };

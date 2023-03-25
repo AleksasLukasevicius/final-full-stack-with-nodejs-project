@@ -4,9 +4,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useContext, useState } from "react";
 import { EventsContext } from "../EventsContext";
-import { EventsList } from "./EventsList";
 
-export const Events = () => {
+export const Register = () => {
   const { events, dispatch } = useContext(EventsContext);
   const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
 
@@ -20,12 +19,10 @@ export const Events = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h1">Events</Typography>
+        <Typography variant="h1">Regeister new User</Typography>
       </Grid>
 
-      <Grid item padding={2}>
-        <EventsList />
-      </Grid>
+      <Grid item padding={2}></Grid>
 
       <Grid item padding={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>

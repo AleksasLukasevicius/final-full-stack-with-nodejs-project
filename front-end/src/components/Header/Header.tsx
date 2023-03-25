@@ -40,7 +40,7 @@ export const Header: FC = () => {
           //   },
           // }}
         >
-          <Link to="/">
+          <Link to="/login">
             <Typography component={"a"} aria-label="login-link" variant="h6">
               Login
             </Typography>

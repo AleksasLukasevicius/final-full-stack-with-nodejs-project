@@ -1,14 +1,23 @@
-import { useReducer } from "react";
-import { EventsContext, eventsReducer, MainRouter } from "./components";
+import { useReducer, useState } from "react";
+import {
+  AuthContext,
+  EventsContext,
+  eventsReducer,
+  MainRouter,
+} from "./components";
 
 export const App = () => {
+  const [auth, setAuth] = useState("" as string | null | undefined);
+
   const [state, dispatch] = useReducer(eventsReducer, {
     events: [],
   });
 
   return (
-    <EventsContext.Provider value={{ ...state, dispatch }}>
-      <MainRouter />
-    </EventsContext.Provider>
+    <AuthContext.Provider value={{ auth, setAuth }}>
+      <EventsContext.Provider value={{ ...state, dispatch }}>
+        <MainRouter />
+      </EventsContext.Provider>
+    </AuthContext.Provider>
   );
 };
