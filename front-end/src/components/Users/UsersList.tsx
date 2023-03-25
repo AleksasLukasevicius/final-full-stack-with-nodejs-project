@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
     field: "age",
     headerName: "Age",
     type: "number",
-    width: 110,
+    width: 50,
     editable: true,
   },
   {
@@ -58,7 +58,7 @@ export const UsersList = () => {
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[5, 25]}
         checkboxSelection
         disableRowSelectionOnClick
       />

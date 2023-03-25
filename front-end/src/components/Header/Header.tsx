@@ -32,26 +32,33 @@ export const Header: FC = () => {
           component="nav"
           role="navigation"
           justifyContent="space-evenly"
-          sx={{
-            "& a": {
-              color: "purple",
-              ":hover": { color: "lightgreen" },
-              textDecoration: "none",
-            },
-          }}
+          // sx={{
+          //   "& a": {
+          //     color: "black",
+          //     ":hover": { color: "grey" },
+          //     textDecoration: "none",
+          //   },
+          // }}
         >
           <Link to="/">
-            <Typography aria-label="home link" variant="h6">
-              Home
+            <Typography component={"a"} aria-label="login-link" variant="h6">
+              Login
+            </Typography>
+          </Link>
+          <Link to="/register">
+            <Typography component={"a"} aria-label="register-link" variant="h6">
+              Register
             </Typography>
           </Link>
           <Link to="/events">
-            <Typography aria-label="products link" variant="h6">
+            <Typography component={"a"} aria-label="products link" variant="h6">
               Events
             </Typography>
           </Link>
-          <Link to="/users" aria-label="users">
-            <Typography variant="h6">Users</Typography>
+          <Link to="/users">
+            <Typography component={"a"} aria-label="users-link" variant="h6">
+              Users
+            </Typography>
           </Link>
         </Grid>
       </Grid>

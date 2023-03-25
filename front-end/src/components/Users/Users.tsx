@@ -6,7 +6,7 @@ export const Users = () => {
   //   const { users, dispatch } = useContext(UsersContext);
 
   return (
-    <Grid>
+    <Grid component={"main"} maxWidth={"75rem"}>
       <Typography variant="h1">Users</Typography>
       <UsersList />
       <Button

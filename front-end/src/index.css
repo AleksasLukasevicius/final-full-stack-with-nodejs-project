@@ -19,7 +19,7 @@ code {
     monospace;
 }
 
-#root {
+/* #root {
   text-align: left;
   font-family: "Titillium Web", sans-serif;
   max-width: 75rem;
@@ -28,7 +28,7 @@ code {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
 header {
   display: flex;
