@@ -202,7 +202,6 @@ export const Register = () => {
           <Grid item>
             <Autocomplete
               disablePortal
-              id="combo-box-demo"
               options={eventName}
               onChange={handleEventChange}
               renderInput={(params) => <TextField {...params} label="Events" />}

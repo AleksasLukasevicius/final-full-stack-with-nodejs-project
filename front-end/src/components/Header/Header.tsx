@@ -3,9 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 import { FC, useContext } from "react";
 import { Grid, Typography } from "@mui/material";
 import { EventsContext } from "../EventsContext";
+import { AuthContext } from "../AuthContext";
 
 export const Header: FC = () => {
-  const { events } = useContext(EventsContext);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const handleClick: React.MouseEventHandler<HTMLSpanElement> = () => {
+    setAuth("");
+  };
 
   return (
     <Grid component="header" container>
@@ -72,9 +77,15 @@ export const Header: FC = () => {
         </NavLink>
 
         <NavLink to="/">
-          <Typography aria-label="logout link" variant="button">
-            Log out
-          </Typography>
+          {!auth ? (
+            <Typography
+              aria-label="logout link"
+              variant="button"
+              onClick={handleClick}
+            >
+              Log out
+            </Typography>
+          ) : null}
         </NavLink>
       </Grid>
     </Grid>
