@@ -4,6 +4,8 @@ export { AuthContext } from "./AuthContext";
 
 export { Footer } from "./Footer";
 export { Events } from "./Events";
+export { AddEvent } from "./Events";
+
 export { Users, UserEvents } from "./Users";
 export { Login } from "./Login";
 export { Logo } from "./Logo";

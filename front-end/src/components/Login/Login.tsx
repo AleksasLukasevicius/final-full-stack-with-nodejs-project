@@ -25,7 +25,7 @@ export const Login: FC = () => {
   const { setAuth } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
+  const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export const Login: FC = () => {
         const token = response.data.token;
         setAuth(token);
         sessionStorage.setItem("token", token);
-        setUsername("");
+        setUserName("");
         setPassword("");
         setSuccessMsg(true);
         navigate("/register");
@@ -65,7 +65,7 @@ export const Login: FC = () => {
       .catch((error) => {
         console.log(error);
         if (error.response.status === 400) {
-          setErrorMsg("Login failed. Incorect username or password.");
+          setErrorMsg("Login failed. Incorect manager name or password.");
         }
       });
   };
@@ -85,62 +85,55 @@ export const Login: FC = () => {
         method="post"
         onSubmit={handleFormSubmit}
       >
-        <Grid container component={"fieldset"} border={"none"}>
-          <Typography component={"legend"} variant="h2">
+        <Grid container component="fieldset" border="none" spacing={2}>
+          <Typography component="legend" variant="h2" textAlign="center">
             Manager login
           </Typography>
 
-          <TextField
-            aria-label="manager-name-input"
-            label="Name"
-            required
-            autoComplete="current-email"
-            variant="standard"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-
-          {/* <TextField
-            aria-label="password-input"
-            label="Password"
-            type="password"
-            required
-            autoComplete="current-password"
-            variant="standard"
-            value={userData.password}
-            onChange={(event) =>
-              handleUserDataChange(event.target.value, "password")
-            }
-          /> */}
-
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">
-              Password
-            </InputLabel>
-            <Input
-              aria-label="manager-password-input"
-              type={showPassword ? "text" : "password"}
+          <Grid item>
+            <TextField
+              aria-label="manager-name-input"
+              label="Name"
               required
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+              variant="standard"
+              value={username}
+              onChange={(event) => setUserName(event.target.value)}
             />
-          </FormControl>
+          </Grid>
 
-          <Button type="submit" variant="outlined">
-            Login
-          </Button>
+          <Grid item>
+            <FormControl variant="standard">
+              <InputLabel htmlFor="standard adornment password">
+                Password
+              </InputLabel>
+              <Input
+                aria-label="manager password input"
+                type={showPassword ? "text" : "password"}
+                sx={{ width: 182 }}
+                required
+                autoComplete="current password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Grid>
+
+          <Grid item>
+            <Button type="submit" variant="outlined">
+              Login
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
 
