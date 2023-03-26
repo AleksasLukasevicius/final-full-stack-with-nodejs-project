@@ -1,8 +1,6 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EventsContext } from "../EventsContext";
-import { EventsList } from "./EventsList";
 import { getEvents } from "./getEvents";
 import type { TEvent, TEvents } from "./types";
 
