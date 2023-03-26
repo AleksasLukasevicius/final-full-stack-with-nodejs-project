@@ -1,14 +1,24 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
-import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs, { Dayjs } from "dayjs";
-import { useContext, useState } from "react";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../EventsContext";
 import { EventsList } from "./EventsList";
+import { getEvents } from "./getEvents";
+import type { TEvent, TEvents } from "./types";
 
 export const Events = () => {
-  const { events, dispatch } = useContext(EventsContext);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
+  // const { events, dispatch } = useContext(EventsContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [events, setEvents] = useState<TEvents[]>([]);
+
+  const handleClick = (id: number) => {
+    navigate(`/events/${id}`);
+  };
+
+  useEffect(() => {
+    getEvents(setEvents, setIsLoading);
+  }, []);
 
   return (
     <Grid
@@ -23,28 +33,49 @@ export const Events = () => {
         <Typography variant="h1">Events</Typography>
       </Grid>
 
-      <Grid item padding={2}>
-        <EventsList />
-      </Grid>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <Box>
+          <Grid
+            container
+            alignItems="center"
+            spacing={2}
+            justifyContent="center"
+            marginTop="50px"
+          >
+            <Typography width="150px" variant="h5">
+              Name
+            </Typography>
+            <Typography width="350px" variant="h5">
+              Date
+            </Typography>
+          </Grid>
 
-      <Grid item padding={2}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateField
-            label="Event Date"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            format="YYYY-MM-DD"
-          />
-        </LocalizationProvider>
-      </Grid>
-
-      <Grid item padding={2}>
-        <Button
-          variant="contained"
-          onClick={() =>
-            dispatch({ type: "add-event", payload: { eventId: 1 } })
-          }
-        >
+          {events.map((event: TEvent) => {
+            return (
+              <Grid
+                container
+                key={event.id}
+                alignItems="center"
+                spacing={2}
+                margin="20px 10px"
+                justifyContent="center"
+              >
+                <Typography width="250px">{event.name}</Typography>
+                <Typography width="250px">
+                  {event.event_date?.split("T", 1)}
+                </Typography>
+                <Button onClick={() => handleClick(event.id)}>
+                  Show users
+                </Button>
+              </Grid>
+            );
+          })}
+        </Box>
+      )}
+      <Grid item>
+        <Button variant="outlined" onClick={() => navigate(`/add-event`)}>
           Add Event
         </Button>
       </Grid>

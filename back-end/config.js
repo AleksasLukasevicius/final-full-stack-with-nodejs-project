@@ -10,6 +10,6 @@ export const mysqlConfig = {
   database: process.env.database,
 };
 
-export const PORT = +process.env.serverPort || 5_000;
+export const PORT = +process.env.serverPort || 5_001;
 
 export const jwtSecret = process.env.JWT_SECRET;

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {
   Events,
+  AddEvent,
   EventsContext,
   Footer,
   Users,
@@ -23,7 +24,7 @@ export const MainRouter = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      maxWidth={"75rem"}
+      maxWidth={"75vw"}
       minHeight={"100vh"}
       margin={"0 auto"}
     >
@@ -35,6 +36,7 @@ export const MainRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/add-event" element={<AddEvent />} />
           <Route path="/users" element={<Users />} />
           <Route path="/user-events" element={<UserEvents />} />
           <Route path="*" element={<NotFoundPage />} />
