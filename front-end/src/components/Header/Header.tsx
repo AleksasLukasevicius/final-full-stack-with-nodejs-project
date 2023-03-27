@@ -24,7 +24,7 @@ export const Header: FC = () => {
       <Grid
         item
         xs={12}
-        sm={2}
+        sm={3}
         display="flex"
         justifyContent="center"
         mt={1}
@@ -40,7 +40,7 @@ export const Header: FC = () => {
         component="nav"
         role="navigation"
         xs={12}
-        sm={8}
+        sm={7}
         display="flex"
         justifyContent="space-evenly"
       >

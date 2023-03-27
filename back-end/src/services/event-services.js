@@ -18,11 +18,11 @@ export const createEvent = async (req, res) => {
   )}, ${mysql.escape(eventData.event_date)})`;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const connection = await mysql.createConnection(mysqlConfig);
 
-    await createConnection.execute(query);
+    await connection.execute(query);
 
-    await createConnection.end();
+    await connection.end();
 
     res.status(200).send("Provided data was inserted into table");
   } catch (error) {
@@ -34,13 +34,11 @@ export const createEvent = async (req, res) => {
 
 export const getEvents = async (req, res) => {
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await createConnection.execute(
-      `SELECT * FROM eventsdb.events`
-    );
+    const [result] = await con.execute(`SELECT * FROM eventsdb.events`);
 
-    await createConnection.end();
+    await con.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -56,11 +54,11 @@ export const getUsersByEventId = async (req, res) => {
   const query = `SELECT eventsdb.users.name, eventsdb.users.surname, eventsdb.users.email, eventsdb.users.birthdate FROM eventsdb.users INNER JOIN eventsdb.events ON eventsdb.events.id = eventsdb.users.event_id WHERE eventsdb.events.id = '${eventId}' ORDER BY eventsdb.users.id`;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await createConnection.execute(query);
+    const [result] = await con.execute(query);
 
-    await createConnection.end();
+    await con.end();
 
     res.status(200).send(result).end();
   } catch (error) {

@@ -16,18 +16,13 @@ import { useEffect, useState } from "react";
 export const AdminRegister = () => {
   // const { events, dispatch } = useContext(EventsContext);
   const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
-  const [userName, setUserName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
+
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    setErrorMsg(false);
-    setSuccessMsg(false);
-  }, [userName]);
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -41,7 +36,7 @@ export const AdminRegister = () => {
       .post(
         "http://localhost:5000/admin-users",
         {
-          userName,
+          username,
         },
         {
           headers: {
@@ -57,6 +52,11 @@ export const AdminRegister = () => {
         setErrorMsg(true);
       });
   };
+
+  useEffect(() => {
+    setErrorMsg(false);
+    setSuccessMsg(false);
+  }, [username]);
 
   return (
     <Grid
@@ -90,8 +90,8 @@ export const AdminRegister = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={userName}
-                onChange={(event) => setUserName(event.target.value)}
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>
           </Grid>

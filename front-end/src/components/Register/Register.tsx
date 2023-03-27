@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { TEvent } from "../Events/types";
 
 export const Register = () => {
   const [name, setName] = useState<string>("");
@@ -24,9 +25,10 @@ export const Register = () => {
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const eventName = events.map((event: any) => event.name);
 
-  console.info("events", events);
-
-  const handleEventChange = (value: any) => {
+  const handleEventChange = (
+    _: React.SyntheticEvent<Element, Event>,
+    value: TEvent | null
+  ) => {
     const selectedEvent = events.find((event: any) => event.name === value);
 
     const getEventIdName = (value: any) => {
@@ -74,7 +76,7 @@ export const Register = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
       .post(
@@ -93,7 +95,7 @@ export const Register = () => {
           },
         }
       )
-      .then(() => {
+      .then((res) => {
         setSuccessMsg(true);
       })
       .catch((err) => {
@@ -114,7 +116,7 @@ export const Register = () => {
         component="form"
         action="submit"
         method="post"
-        onSubmit={handleFormSubmit}
+        onSubmit={handleSubmit}
       >
         <Grid
           container
@@ -210,7 +212,7 @@ export const Register = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully logged in</Typography>
+        <Typography color="success">Successfully added in</Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}

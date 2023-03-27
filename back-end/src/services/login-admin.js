@@ -12,22 +12,19 @@ export const loginAdmin = async (req, res) => {
   } catch (error) {
     console.log(error);
 
-    return res
-      .status(400)
-      .send({ error: "Incorrect username or password" })
-      .end();
+    return res.status(400).send({ error: "Incorrect Name or password" }).end();
   }
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [data] = await createConnection.execute(
+    const [data] = await con.execute(
       `SELECT * FROM eventsdb.admin_users WHERE username = ${mysql.escape(
         userData.username
       )}`
     );
 
-    await createConnection.end();
+    await con.end();
 
     if (data.length === 0) {
       return res
@@ -40,20 +37,17 @@ export const loginAdmin = async (req, res) => {
     const isAuthed = bcrypt.compareSync(userData.password, data[0].password);
 
     if (isAuthed) {
-      const token = jwt.sign(
+      const accessToken = jwt.sign(
         { id: data[0].id, username: data[0].username },
         jwtSecret
       );
 
       return res
-        .send({ message: "Succesfully logged in", token, userID })
+        .send({ message: "Succesfully logged in", accessToken, userID })
         .end();
     }
 
-    return res
-      .status(400)
-      .send({ error: "Incorect username or password" })
-      .end();
+    return res.status(400).send({ error: "Incorect Name or password" }).end();
   } catch (error) {
     console.log(error);
 
