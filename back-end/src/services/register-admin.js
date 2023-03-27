@@ -11,21 +11,21 @@ export const registerAdmin = async (req, res) => {
   } catch (error) {
     console.log(error);
 
-    return res.status(400).send({ error: "Incorrect email or password" }).end();
+    return res.status(400).send({ error: "Incorrect Name or password" }).end();
   }
 
   try {
     const hashedPassword = bcrypt.hashSync(userData.password);
 
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [data] = await createConnection.execute(
+    const [data] = await con.execute(
       `INSERT INTO eventsdb.admin_users (username, password) VALUES (${mysql.escape(
         userData.username
       )}, '${hashedPassword}')`
     );
 
-    await createConnection.end();
+    await con.end();
 
     return res.status(200).send(data).end();
   } catch (error) {

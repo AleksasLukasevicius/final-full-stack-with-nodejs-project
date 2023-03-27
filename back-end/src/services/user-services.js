@@ -13,17 +13,20 @@ export const registerUser = async (req, res) => {
     return res.status(400).send({ error: "Incorrect user data" }).end();
   }
 
-  const query = `INSERT INTO eventsdb.users (name, surname, email, birthdate, event_name, event_id) 
-  VALUES (${mysql.escape(userData.name)}, ${mysql.escape(userData.surname)}, 
-  ${mysql.escape(userData.email)}, ${mysql.escape(userData.birthdate)},
-   ${mysql.escape(userData.event_name)},${mysql.escape(userData.event_id)} )`;
+  const query = `INSERT INTO eventsdb.users (name, surname, email, birthdate, event_name, event_id) VALUES (${mysql.escape(
+    userData.name
+  )}, ${mysql.escape(userData.surname)}, ${mysql.escape(
+    userData.email
+  )}, ${mysql.escape(userData.birthdate)}, ${mysql.escape(
+    userData.event_name
+  )},${mysql.escape(userData.event_id)} )`;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    await createConnection.execute(query);
+    await con.execute(query);
 
-    await createConnection.end();
+    await con.end();
 
     return res.status(200).send("User was registered to the event").end();
   } catch (error) {
@@ -35,13 +38,11 @@ export const registerUser = async (req, res) => {
 
 export const getUsers = async (_, res) => {
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await createConnection.execute(
-      `SELECT * FROM eventsdb.users`
-    );
+    const [result] = await con.execute(`SELECT * FROM eventsdb.users`);
 
-    await createConnection.end();
+    await con.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -55,13 +56,13 @@ export const getSpecificUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await createConnection.execute(
+    const [result] = await con.execute(
       `SELECT * FROM eventsdb.users WHERE id = ${mysql.escape(id)}`
     );
 
-    await createConnection.end();
+    await con.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -75,13 +76,13 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await createConnection.execute(
+    const [result] = await con.execute(
       `DELETE FROM eventsdb.users WHERE id = ${mysql.escape(id)}`
     );
 
-    await createConnection.end();
+    await con.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -116,11 +117,11 @@ export const updateUser = async (req, res) => {
   )}`;
 
   try {
-    const createConnection = await mysql.createConnection(mysqlConfig);
+    const con = await mysql.createConnection(mysqlConfig);
 
-    await createConnection.execute(query);
+    await con.execute(query);
 
-    await createConnection.end();
+    await con.end();
 
     return res.status(200).send("User was updated").end();
   } catch (error) {

@@ -13,7 +13,7 @@ import {
   Home,
 } from "..";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AdminRegister } from "../Register/AdmiRegister";
+import { AdminRegister } from "../Register/AdminRegister";
 import { UpdateUser } from "../Users";
 import { Grid } from "@mui/material";
 import { RequireAuth } from "../AuthContext/RequireAuth";
