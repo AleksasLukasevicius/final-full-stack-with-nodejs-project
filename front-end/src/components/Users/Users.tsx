@@ -15,7 +15,7 @@ export const Users = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h1">Users</Typography>
+        <Typography variant="h2">Users</Typography>
       </Grid>
 
       {isLoading ? (

@@ -102,18 +102,19 @@ export const Login: FC = () => {
           </Typography>
 
           <Grid item>
-            <TextField
-              aria-label="manager-name-input"
-              label="Name"
-              required
-              variant="standard"
-              value={username}
-              onChange={(event) => setUserName(event.target.value)}
-            />
+            <FormControl>
+              <InputLabel htmlFor="manager name input">Name</InputLabel>
+              <Input
+                aria-label="manager name input"
+                required
+                value={username}
+                onChange={(event) => setUserName(event.target.value)}
+              />
+            </FormControl>
           </Grid>
 
           <Grid item>
-            <FormControl variant="standard">
+            <FormControl>
               <InputLabel htmlFor="standard adornment password">
                 Password
               </InputLabel>

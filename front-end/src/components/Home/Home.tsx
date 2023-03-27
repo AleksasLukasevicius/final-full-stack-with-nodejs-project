@@ -4,15 +4,16 @@ import { NavLink } from "react-router-dom";
 export const Home = () => {
   return (
     <Grid
+      component="main"
       container
-      component={"main"}
+      direction="column"
       alignItems="center"
-      flexDirection={"column"}
+      margin="0 auto"
     >
-      <Typography variant="h3">Welcome to the Events App</Typography>
+      <Typography variant="h2">Welcome to the Events App</Typography>
 
       <Grid item component="nav" role="navigation">
-        <Typography component={"h2"} textAlign="center">
+        <Typography textAlign="center">
           Please
           <NavLink to="/login" aria-label="login link">
             <Typography variant="button"> Login </Typography>

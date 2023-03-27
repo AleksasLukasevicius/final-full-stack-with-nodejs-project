@@ -7,7 +7,6 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -86,14 +85,15 @@ export const AdminRegister = () => {
           </Typography>
 
           <Grid item>
-            <TextField
-              aria-label="user name input"
-              label="Name"
-              required
-              variant="standard"
-              value={userName}
-              onChange={(event) => setUserName(event.target.value)}
-            />
+            <FormControl>
+              <InputLabel htmlFor="manager name input">Name</InputLabel>
+              <Input
+                aria-label="manager name input"
+                required
+                value={userName}
+                onChange={(event) => setUserName(event.target.value)}
+              />
+            </FormControl>
           </Grid>
 
           <Grid item>
