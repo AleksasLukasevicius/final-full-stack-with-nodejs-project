@@ -5,7 +5,7 @@ import {
   EventsContext,
   Footer,
   Users,
-  UserEvents,
+  EventUsers,
   Login,
   Header,
   NotFoundPage,
@@ -13,14 +13,16 @@ import {
   Home,
 } from "..";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { AdminRegister } from "../Register/AdmiRegister";
+import { UpdateUser } from "../Users";
+import { Grid } from "@mui/material";
+import { RequireAuth } from "../AuthContext/RequireAuth";
 
 export const MainRouter = () => {
   const { events, dispatch } = useContext(EventsContext);
 
   return (
-    <Grid2
+    <Grid
       container
       display={"flex"}
       flexDirection={"column"}
@@ -35,17 +37,21 @@ export const MainRouter = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/admin-register" element={<AdminRegister />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/add-event" element={<AddEvent />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user-events" element={<UserEvents />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin-register" element={<AdminRegister />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/events/:id" element={<EventUsers />} />
+            <Route path="/add-event" element={<AddEvent />} />
+            <Route path="/users" element={<Users />} />
+          </Route>
+
+          <Route path="/user/:id" element={<UpdateUser />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
         <Footer />
       </BrowserRouter>
-    </Grid2>
+    </Grid>
   );
 };

@@ -3,17 +3,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getEvents } from "../utils/getEvents";
 import { EventsTable } from "./EventsTable";
-import type { TEvents } from "./types";
+import type { TEvent } from "./types";
 
 export const Events = () => {
   // const { events, dispatch } = useContext(EventsContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [events, setEvents] = useState<TEvents[]>([]);
-
-  const handleClick = (id: number) => {
-    navigate(`/events/${id}`);
-  };
+  const [events, setEvents] = useState<TEvent[]>([]);
 
   useEffect(() => {
     getEvents(setEvents, setIsLoading);
@@ -27,6 +23,7 @@ export const Events = () => {
       direction="column"
       alignItems="center"
       margin="0 auto"
+      spacing={2}
     >
       <Grid item>
         <Typography variant="h2">Events</Typography>

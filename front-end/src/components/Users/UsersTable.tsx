@@ -27,7 +27,7 @@ export const UsersTable = () => {
     axios
       .delete(`http://localhost:5000/users/${id}`, {
         headers: {
-          AuTableCellorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       })
       .then(() => {

@@ -1,5 +1,5 @@
 import { Logo } from "../Logo/Logo";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FC, useContext } from "react";
 import { Grid, Typography } from "@mui/material";
 import { AuthContext } from "../AuthContext";
@@ -7,8 +7,16 @@ import { AuthContext } from "../AuthContext";
 export const Header: FC = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
-  const handleClick: React.MouseEventHandler<HTMLSpanElement> = () => {
+  const navigate = useNavigate();
+
+  const handleLogOutClick = () => {
     setAuth("");
+
+    sessionStorage.removeItem("accessToken");
+  };
+
+  const handleSignInClick = () => {
+    navigate("/");
   };
 
   return (
@@ -70,17 +78,21 @@ export const Header: FC = () => {
         justifyContent="space-evenly"
       >
         <NavLink to="/login">
-          <Typography aria-label="login link" variant="button">
+          <Typography
+            aria-label="login link"
+            variant="button"
+            onClick={handleSignInClick}
+          >
             Login
           </Typography>
         </NavLink>
 
         <NavLink to="/">
-          {!auth ? (
+          {auth ? (
             <Typography
               aria-label="logout link"
               variant="button"
-              onClick={handleClick}
+              onClick={handleLogOutClick}
             >
               Log out
             </Typography>

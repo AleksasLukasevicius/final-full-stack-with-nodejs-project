@@ -19,11 +19,11 @@ export const registerUser = async (req, res) => {
    ${mysql.escape(userData.event_name)},${mysql.escape(userData.event_id)} )`;
 
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const createConnection = await mysql.createConnection(mysqlConfig);
 
-    await con.execute(query);
+    await createConnection.execute(query);
 
-    await con.end();
+    await createConnection.end();
 
     return res.status(200).send("User was registered to the event").end();
   } catch (error) {
@@ -35,11 +35,13 @@ export const registerUser = async (req, res) => {
 
 export const getUsers = async (_, res) => {
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const createConnection = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await con.execute(`SELECT * FROM eventsdb.users`);
+    const [result] = await createConnection.execute(
+      `SELECT * FROM eventsdb.users`
+    );
 
-    await con.end();
+    await createConnection.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -53,13 +55,13 @@ export const getSpecificUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const createConnection = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await con.execute(
+    const [result] = await createConnection.execute(
       `SELECT * FROM eventsdb.users WHERE id = ${mysql.escape(id)}`
     );
 
-    await con.end();
+    await createConnection.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -73,13 +75,13 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const createConnection = await mysql.createConnection(mysqlConfig);
 
-    const [result] = await con.execute(
+    const [result] = await createConnection.execute(
       `DELETE FROM eventsdb.users WHERE id = ${mysql.escape(id)}`
     );
 
-    await con.end();
+    await createConnection.end();
 
     res.status(200).send(result).end();
   } catch (error) {
@@ -114,11 +116,11 @@ export const updateUser = async (req, res) => {
   )}`;
 
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const createConnection = await mysql.createConnection(mysqlConfig);
 
-    await con.execute(query);
+    await createConnection.execute(query);
 
-    await con.end();
+    await createConnection.end();
 
     return res.status(200).send("User was updated").end();
   } catch (error) {

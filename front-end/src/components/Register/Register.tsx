@@ -1,44 +1,37 @@
 import {
   Autocomplete,
+  Box,
   Button,
-  FormControl,
   Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
   TextField,
   Typography,
 } from "@mui/material";
-import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import axios from "axios";
-import dayjs, { Dayjs } from "dayjs";
-import { useContext, useEffect, useState } from "react";
-import { EventsContext } from "../EventsContext";
+import { useEffect, useState } from "react";
 
 export const Register = () => {
-  // const { events, dispatch } = useContext(EventsContext);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
-  const [userName, setUserName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [birthdate, setBirthdate] = useState<
     string | number | readonly string[] | undefined
-  >("2022-07-26");
+  >("2023-04-01");
   const [age, setAge] = useState<number>(0);
   const [events, setEvents] = useState<string[]>([]);
   const [event_id, setEvent_id] = useState<number>(0);
   const [selectedEventName, setSelectedEventName] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
-  const eventName = events.map((event: any) => event.userName);
+  const eventName = events.map((event: any) => event.name);
 
-  const handleEventChange = (event: any, value: any) => {
-    const selectedEvent = events.find((event: any) => event.userName === value);
+  console.info("events", events);
+
+  const handleEventChange = (value: any) => {
+    const selectedEvent = events.find((event: any) => event.name === value);
 
     const getEventIdName = (value: any) => {
       const eventId = value.id;
-      const eventName = value.userName;
+      const eventName = value.name;
 
       setEvent_id(eventId);
       setSelectedEventName(eventName);
@@ -65,13 +58,13 @@ export const Register = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [userName, lastName, email, birthdate]);
+  }, [name, surname, email, birthdate]);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/events", {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
         },
       })
       .then((res) => {
@@ -87,8 +80,8 @@ export const Register = () => {
       .post(
         "http://localhost:5000/users",
         {
-          userName,
-          lastName,
+          name,
+          surname,
           email,
           birthdate,
           event_id,
@@ -96,11 +89,11 @@ export const Register = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         setSuccessMsg(true);
       })
       .catch((err) => {
@@ -141,8 +134,8 @@ export const Register = () => {
               label="Name"
               required
               variant="standard"
-              value={userName}
-              onChange={(event) => setUserName(event.target.value)}
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </Grid>
 
@@ -152,8 +145,8 @@ export const Register = () => {
               label="Last Name"
               required
               variant="standard"
-              value={lastName}
-              onChange={(event) => setLastName(event.target.value)}
+              value={surname}
+              onChange={(event) => setSurname(event.target.value)}
             />
           </Grid>
 
@@ -209,12 +202,7 @@ export const Register = () => {
           </Grid>
 
           <Grid item>
-            <Button
-              variant="outlined"
-              // onClick={() =>
-              //   dispatch({ type: "add-event", payload: { eventId: 1 } })
-              // }
-            >
+            <Button type="submit" variant="outlined">
               Add User
             </Button>
           </Grid>

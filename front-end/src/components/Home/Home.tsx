@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -10,6 +10,8 @@ export const Home = () => {
       alignItems="center"
       margin="0 auto"
     >
+      <Outlet />
+
       <Typography variant="h2">Welcome to the Events App</Typography>
 
       <Grid item component="nav" role="navigation">
