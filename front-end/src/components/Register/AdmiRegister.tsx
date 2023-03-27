@@ -1,45 +1,33 @@
-import {
-  type FC,
-  FormEventHandler,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Button,
-  Grid,
-  Typography,
-  TextField,
   FormControl,
-  InputLabel,
+  Grid,
+  IconButton,
   Input,
   InputAdornment,
-  IconButton,
+  InputLabel,
+  TextField,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { AuthContext } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+import dayjs, { Dayjs } from "dayjs";
+import { useEffect, useState } from "react";
 
-export const Login: FC = () => {
-  const { setAuth } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState<string>("");
-  const [successMsg, setSuccessMsg] = useState<boolean>(false);
-  const [username, setUserName] = useState<string>("");
+export const AdminRegister = () => {
+  // const { events, dispatch } = useContext(EventsContext);
+  const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
+  const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate();
 
+  const [successMsg, setSuccessMsg] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const [userData, setUserData] = useState({ name: "", password: "" });
-  // const handleUserDataChange = (value: string, key: "name" | "password") => {
-  //   setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
-  // };
-  // const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-  //   event.preventDefault();
-
-  //   console.info(userData);
-  // };
+  useEffect(() => {
+    setErrorMsg(false);
+    setSuccessMsg(false);
+  }, [userName]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -48,32 +36,28 @@ export const Login: FC = () => {
     event.preventDefault();
   };
 
-  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     axios
-      .post("http://localhost:5000/login-admin", { username, password })
-      .then((response) => {
-        const token = response.data.token;
-        setAuth(token);
-        sessionStorage.setItem("token", token);
-        setUserName("");
-        setPassword("");
-        setSuccessMsg(true);
-        navigate("/register");
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.status === 400) {
-          setErrorMsg("Login failed. Incorect manager name or password.");
+      .post(
+        "http://localhost:5000/admin-users",
+        {
+          userName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
         }
+      )
+      .then((res) => {
+        setSuccessMsg(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMsg(true);
       });
   };
-
-  useEffect(() => {
-    setErrorMsg("");
-    setSuccessMsg(false);
-  }, [username, password]);
 
   return (
     <Grid
@@ -98,16 +82,16 @@ export const Login: FC = () => {
           justifyContent="center"
         >
           <Typography component="legend" variant="h2" textAlign="center">
-            Admin registration login
+            New admin registration
           </Typography>
 
           <Grid item>
             <TextField
-              aria-label="manager-name-input"
+              aria-label="user name input"
               label="Name"
               required
               variant="standard"
-              value={username}
+              value={userName}
               onChange={(event) => setUserName(event.target.value)}
             />
           </Grid>
@@ -141,9 +125,7 @@ export const Login: FC = () => {
           </Grid>
 
           <Grid item>
-            <Button type="submit" variant="outlined">
-              Login
-            </Button>
+            <Button variant="outlined">Add Admin</Button>
           </Grid>
         </Grid>
       </Grid>

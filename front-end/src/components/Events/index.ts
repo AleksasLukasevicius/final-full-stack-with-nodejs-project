@@ -1,3 +1,3 @@
 export { Events } from "./Events";
-export { EventsList } from "./EventsList";
+export { EventsTable } from "./EventsTable";
 export { AddEvent } from "./AddEvent";

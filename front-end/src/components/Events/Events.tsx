@@ -1,8 +1,9 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getEvents } from "./getEvents";
-import type { TEvent, TEvents } from "./types";
+import { getEvents } from "../utils/getEvents";
+import { EventsTable } from "./EventsTable";
+import type { TEvents } from "./types";
 
 export const Events = () => {
   // const { events, dispatch } = useContext(EventsContext);
@@ -34,43 +35,9 @@ export const Events = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <Box>
-          <Grid
-            container
-            alignItems="center"
-            spacing={2}
-            justifyContent="center"
-            marginTop="50px"
-          >
-            <Typography width="150px" variant="h5">
-              Name
-            </Typography>
-            <Typography width="350px" variant="h5">
-              Date
-            </Typography>
-          </Grid>
-
-          {events.map((event: TEvent) => {
-            return (
-              <Grid
-                container
-                key={event.id}
-                alignItems="center"
-                spacing={2}
-                margin="20px 10px"
-                justifyContent="center"
-              >
-                <Typography width="250px">{event.name}</Typography>
-                <Typography width="250px">
-                  {event.event_date?.split("T", 1)}
-                </Typography>
-                <Button onClick={() => handleClick(event.id)}>
-                  Show users
-                </Button>
-              </Grid>
-            );
-          })}
-        </Box>
+        <Grid>
+          <EventsTable />
+        </Grid>
       )}
       <Grid item>
         <Button variant="outlined" onClick={() => navigate(`/add-event`)}>

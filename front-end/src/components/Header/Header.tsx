@@ -2,7 +2,6 @@ import { Logo } from "../Logo/Logo";
 import { Link, NavLink } from "react-router-dom";
 import { FC, useContext } from "react";
 import { Grid, Typography } from "@mui/material";
-import { EventsContext } from "../EventsContext";
 import { AuthContext } from "../AuthContext";
 
 export const Header: FC = () => {

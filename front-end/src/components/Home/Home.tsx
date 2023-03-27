@@ -18,7 +18,7 @@ export const Home = () => {
             <Typography variant="button"> Login </Typography>
           </NavLink>
           or
-          <NavLink to="/register" aria-label="register link">
+          <NavLink to="/admin-register" aria-label="admin register link">
             <Typography variant="button"> Register</Typography>
           </NavLink>
         </Typography>
