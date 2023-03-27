@@ -6,7 +6,7 @@ export { Footer } from "./Footer";
 export { Events } from "./Events";
 export { AddEvent } from "./Events";
 
-export { Users, UserEvents } from "./Users";
+export { Users, EventUsers } from "./Users";
 export { Login } from "./Login";
 export { Logo } from "./Logo";
 export { Home } from "./Home";

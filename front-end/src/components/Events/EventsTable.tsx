@@ -1,24 +1,21 @@
 import {
   Button,
-  Grid,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getEvents } from "../utils/getEvents";
-import type { TEvent, TEvents } from "./types";
+import type { TEvent } from "./types";
 
 export const EventsTable = () => {
-  // const { events, dispatch } = useContext(EventsContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [events, setEvents] = useState<TEvent[]>([]);
   const navigate = useNavigate();
-  const [events, setEvents] = useState<TEvents[]>([]);
 
   const handleClick = (id: number) => {
     navigate(`/events/${id}`);

@@ -4,5 +4,6 @@ export type TUsers = {
   surname: string | null;
   email: string | null;
   birthdate: string | null;
+  event_name: string | null;
   event_id: number;
 };

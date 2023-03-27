@@ -8,6 +8,11 @@ import {
 
 export const App = () => {
   const [auth, setAuth] = useState("" as string | null | undefined);
+  const accessToken = sessionStorage.getItem("accessToken");
+
+  if (accessToken && !auth) {
+    setAuth(accessToken);
+  }
 
   const [state, dispatch] = useReducer(eventsReducer, {
     events: [],
