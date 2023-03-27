@@ -29,7 +29,7 @@ export const Events = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h1">Events</Typography>
+        <Typography variant="h2">Events</Typography>
       </Grid>
 
       {isLoading ? (
