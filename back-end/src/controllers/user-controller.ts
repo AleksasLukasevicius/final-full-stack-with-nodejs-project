@@ -8,12 +8,10 @@ import {
   updateUser,
 } from "../services/user-services.js";
 
-const userRouter = Router();
+export const userRouter = Router();
 
 userRouter.get("/", isLoggedIn, getUsers);
 userRouter.get("/:id", isLoggedIn, getSpecificUser);
 userRouter.post("/", isLoggedIn, registerUser);
 userRouter.delete("/:id", isLoggedIn, deleteUser);
 userRouter.patch("/:id", isLoggedIn, updateUser);
-
-export default userRouter;

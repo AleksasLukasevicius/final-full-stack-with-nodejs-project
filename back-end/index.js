@@ -2,10 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { PORT } from "./config.js";
-import registerAdminRouter from "./src/controllers/register-admin-controller.js";
-import loginAdminRouter from "./src/controllers/login-admin-controller.js";
-import eventRouter from "./src/controllers/event-controller.js";
-import userRouter from "./src/controllers/user-controller.js";
+import { eventRouter } from "./src/controllers/event-controller.js";
+import { loginAdminRouter } from "./src/controllers/login-admin-controller.js";
+import { registerAdminRouter } from "./src/controllers/register-admin-controller.js";
+import { userRouter } from "./src/controllers/user-controller.js";
 
 dotenv.config();
 
