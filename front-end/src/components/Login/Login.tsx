@@ -1,10 +1,4 @@
-import {
-  type FC,
-  FormEventHandler,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { type FC, useContext, useEffect, useState } from "react";
 import {
   Button,
   Grid,
@@ -20,11 +14,10 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login: FC = () => {
   const { setAuth } = useContext(AuthContext);
   const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const navigate = useNavigate();
 

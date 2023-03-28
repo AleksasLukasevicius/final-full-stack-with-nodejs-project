@@ -1,6 +1,4 @@
 import { Grid, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const NotFoundPage = () => {
   return (

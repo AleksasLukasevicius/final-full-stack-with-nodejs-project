@@ -15,7 +15,7 @@ import type { TUsers } from "./types";
 
 export const UsersTable = () => {
   const [users, setUsers] = useState<TUsers[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 

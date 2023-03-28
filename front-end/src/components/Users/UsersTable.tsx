@@ -8,20 +8,16 @@ import {
   TableRow,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../utils/getUsers";
 import type { TUsers } from "./types";
 
 export const UsersTable = () => {
   const [users, setUsers] = useState<TUsers[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getUsers(setUsers, setIsLoading);
-  }, []);
 
   const handleDeleteButton = (id: number) => {
     axios
