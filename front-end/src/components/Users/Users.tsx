@@ -1,9 +1,16 @@
 import { Grid, Typography } from "@mui/material";
-import { useState } from "react";
-import { UsersTable } from "./UsersTable";
+import { useEffect, useState } from "react";
+import { getUsers } from "../RegisteredUsers/getUsers";
+import { TUsers } from "../RegisteredUsers/types";
+import { UsersTable } from "../RegisteredUsers/UsersTable";
 
 export const Users = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [users, setUsers] = useState<TUsers[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getUsers(setUsers, setIsLoading);
+  }, []);
 
   return (
     <Grid
@@ -15,7 +22,7 @@ export const Users = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h2">Users</Typography>
+        <Typography variant="h2">Users YYY</Typography>
       </Grid>
 
       {isLoading ? (

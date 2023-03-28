@@ -10,7 +10,7 @@ import { LoginAdmin } from "../LoginAdmin";
 import { NotFoundPage } from "../NotFoundPage";
 import { Register } from "../Register";
 import { AdminRegister } from "../Register/AdminRegister";
-import { Users } from "../RegisteredUsers/Users";
+import { Users } from "../Users/Users";
 import { EditUser } from "../Users";
 import { Layout } from "./Layout";
 
