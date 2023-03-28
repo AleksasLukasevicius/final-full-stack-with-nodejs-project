@@ -33,17 +33,14 @@ export const AdminRegister = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post(
-        "http://localhost:5000/admin-users",
-        {
-          admin_name,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        }
-      )
+      .post("http://localhost:5000/admin-users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=UTF-8" },
+        body: JSON.stringify({
+          admin_name: setUsername,
+          password: setPassword,
+        }),
+      })
       .then((res) => {
         setSuccessMsg(true);
       })
