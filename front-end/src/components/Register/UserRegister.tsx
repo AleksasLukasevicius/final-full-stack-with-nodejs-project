@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TEvent } from "../Events/types";
 
-export const Register = () => {
+export const UserRegister = () => {
   const [name, setName] = useState<string>("");
   const [last_name, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

@@ -6,9 +6,9 @@ import { Events, AddEvent } from "../Events";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Home } from "../Home";
-import { LoginAdmin } from "../LoginAdmin";
+import { Login } from "../Login";
 import { NotFoundPage } from "../NotFoundPage";
-import { Register } from "../Register";
+import { UserRegister } from "../Register";
 import { AdminRegister } from "../Register/AdminRegister";
 import { Users, EditUser, EventUsers } from "../Users";
 import { Layout } from "./Layout";
@@ -28,11 +28,11 @@ export const MainRouter: FC = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginAdmin />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/admin-register" element={<AdminRegister />} />
         <Route path="/" element={<Layout />}>
           <Route element={<RequireAuth />}>
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<UserRegister />} />
             <Route path="/users" element={<Users />} />
             <Route path="/user/:id" element={<EditUser />} />
             <Route path="/events" element={<Events />} />
