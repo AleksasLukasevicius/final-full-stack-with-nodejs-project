@@ -43,10 +43,7 @@ header img {
   padding: 0.5rem 0;
 }
 
-nav a {
-  text-decoration: none;
-  color: black;
-}
+
 
 .title-wrapper {
   display: flex;
@@ -54,50 +51,17 @@ nav a {
   align-items: center;
 }
 
-h1 {
-  text-align: left;
-  font-weight: 100;
-  font-size: 2rem;
-  margin: 0;
-}
-
-.products-container {
-  margin: 2rem 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.product-card {
-  display: flex;
-  text-align: left;
-  border-radius: 1rem;
-  border: 1px solid #b7b0b0;
-  padding: 1rem;
-  width: 6rem;
-  gap: 2rem;
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-footer {
-  margin-top: auto;
-}
 
 form {
   text-align: left;
 }
 
-fieldset {
-  width: 14em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  align-items: center;
-  margin: 0 auto;
-}
 
 ::placeholder {
   text-align: center;
 } */
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
