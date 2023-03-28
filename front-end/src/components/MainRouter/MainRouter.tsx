@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
+import { FC } from "react";
 import { Routes, Route } from "react-router-dom";
 import { RequireAuth } from "../AuthContext";
 import { Events, AddEvent } from "../Events";
-import { EventUsers } from "../EventUsers";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Home } from "../Home";
@@ -10,11 +10,10 @@ import { LoginAdmin } from "../LoginAdmin";
 import { NotFoundPage } from "../NotFoundPage";
 import { Register } from "../Register";
 import { AdminRegister } from "../Register/AdminRegister";
-import { Users } from "../RegisteredUsers/Users";
-import { UpdateUser } from "../UpdateUser";
+import { Users, EditUser, EventUsers } from "../Users";
 import { Layout } from "./Layout";
 
-export const MainRouter = () => {
+export const MainRouter: FC = () => {
   return (
     <Grid
       container
@@ -35,7 +34,7 @@ export const MainRouter = () => {
           <Route element={<RequireAuth />}>
             <Route path="/register" element={<Register />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/user/:id" element={<UpdateUser />} />
+            <Route path="/user/:id" element={<EditUser />} />
             <Route path="/events" element={<Events />} />
             <Route path="/add-event" element={<AddEvent />} />
             <Route path="/events/:id" element={<EventUsers />} />

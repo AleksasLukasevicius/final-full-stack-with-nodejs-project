@@ -7,13 +7,7 @@ export const Home = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   return (
-    <Grid
-      component="main"
-      container
-      direction="column"
-      alignItems="center"
-      margin="0 auto"
-    >
+    <Grid>
       <Outlet />
 
       <Typography variant="h2">Welcome to the Events App</Typography>

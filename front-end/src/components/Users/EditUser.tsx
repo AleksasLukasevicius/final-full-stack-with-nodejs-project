@@ -1,9 +1,9 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export const UpdateUser = () => {
+export const EditUser = () => {
   const [name, setName] = useState<string>("");
   const [last_name, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -89,143 +89,109 @@ export const UpdateUser = () => {
   };
 
   return (
-    <Box
-      sx={{
-        border: "1px solid black",
-        borderRadius: "10px",
-        width: "70%",
-        margin: "auto",
-      }}
+    <Grid
+      component="main"
+      container
+      direction="column"
+      alignItems="center"
+      margin="0 auto"
     >
-      <Typography
-        variant="h4"
-        textAlign="center"
-        sx={{
-          backgroundColor: "rgb(191, 145, 235)",
-          width: "98%",
-          margin: "10px 10px",
-          padding: "10px",
-          borderRadius: "10px",
-          boxSizing: "border-box",
-        }}
+      <Grid
+        component="form"
+        action="submit"
+        method="post"
+        onSubmit={handleSubmit}
       >
-        Update user data
-      </Typography>
-      <Grid container justifyContent="center" marginTop={5} marginBottom={3}>
-        <form onSubmit={handleSubmit}>
-          <Grid item marginBottom={2}>
+        <Grid
+          container
+          flexDirection="column"
+          alignItems="center"
+          component="fieldset"
+          border="none"
+          spacing={2}
+          width="50rem"
+        >
+          <Typography component="legend" variant="h2" textAlign="center">
+            Edit user
+          </Typography>
+
+          <Grid item>
             <TextField
+              aria-label="user name input"
               label="Name"
-              variant="outlined"
               required
-              sx={{ width: 300 }}
-              value={name ?? ""}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Grid>
-          <Grid item marginBottom={2}>
-            <TextField
-              label="last_name"
-              variant="outlined"
-              required
-              sx={{ width: 300 }}
-              value={last_name ?? ""}
-              onChange={(e) => setLastName(e.target.value)}
+              variant="standard"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </Grid>
 
-          <Grid item marginBottom={2}>
+          <Grid item>
             <TextField
-              disabled
-              label="Event"
-              value={usersEventName ?? ""}
-              sx={{ width: 300 }}
+              aria-label="user last_name input"
+              label="Last Name"
+              required
+              variant="standard"
+              value={last_name}
+              onChange={(event) => setLastName(event.target.value)}
             />
           </Grid>
 
-          <Grid item marginBottom={2}>
+          <Grid item>
             <TextField
-              label="Email"
-              variant="outlined"
-              required
-              sx={{ width: 300 }}
+              aria-label="user email input"
+              label="User email"
               type="email"
-              value={email ?? ""}
-              onChange={(e) => setEmail(e.target.value)}
+              required
+              variant="standard"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </Grid>
-          <Grid item marginBottom={2}>
+
+          <Grid item>
             <TextField
               label="Birthdate"
               type="date"
               required
-              sx={{ width: 300 }}
-              variant="outlined"
+              sx={{ width: 182 }}
+              variant="standard"
               inputProps={{
-                min: "1900-01-01",
-                max: "2021-01-01",
+                min: "1923-01-01",
+                max: "2013-01-01",
               }}
-              value={birthdate ?? ""}
+              value={birthdate}
               onChange={(e) => {
                 setBirthdate(e.target.value);
                 ageCalc(new Date(e.target.value));
               }}
             />
           </Grid>
-          <Grid item marginBottom={2}>
+
+          <Grid item>
             <TextField
-              label="Age"
-              variant="outlined"
+              label="User age"
+              variant="standard"
               required
               type="number"
               value={age}
               disabled
-              sx={{ width: 300 }}
             />
           </Grid>
-          <Grid item textAlign="center">
-            <Button
-              variant="outlined"
-              color="secondary"
-              type="submit"
-              sx={{ width: 300, height: 50 }}
-            >
-              Update
+
+          <Grid item>
+            <Button type="submit" variant="outlined">
+              Edit User
             </Button>
           </Grid>
-        </form>
+        </Grid>
       </Grid>
-      {successMsg ? (
-        <Typography
-          component="p"
-          sx={{
-            backgroundColor: "rgb(128, 218, 128)",
-            width: "98%",
-            margin: "10px 10px",
-            padding: "10px",
-            borderRadius: "10px",
-            boxSizing: "border-box",
-          }}
-        >
-          User was updated successfully.
-        </Typography>
-      ) : null}
 
-      {errorMsg ? (
-        <Typography
-          component="p"
-          sx={{
-            backgroundColor: "rgb(244, 164, 164)",
-            width: "98%",
-            margin: "10px 10px",
-            padding: "10px",
-            borderRadius: "10px",
-            boxSizing: "border-box",
-          }}
-        >
-          Cannot update user data. Please check data provided.
-        </Typography>
-      ) : null}
-    </Box>
+      {successMsg ? (
+        <Typography color="success">Successfully editted</Typography>
+      ) : (
+        errorMsg && <Typography color="error">{errorMsg}</Typography>
+      )}
+    </Grid>
   );
 };
