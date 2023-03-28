@@ -97,7 +97,7 @@ export const EventUsers = () => {
                     }}
                     key={id}
                   >
-                    <TableCell>{`${user.name} ${user.last_name}`}</TableCell>
+                    <TableCell>{`${user.name} ${user.surname}`}</TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.birthdate.split("T", 1)}</TableCell>
                   </TableRow>

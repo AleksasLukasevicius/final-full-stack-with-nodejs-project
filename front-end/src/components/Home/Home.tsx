@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 
 export const Home = () => {
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
 
   return (
     <Grid

@@ -3,7 +3,8 @@ export { EventsContext, eventsReducer } from "./EventsContext";
 export { AuthContext } from "./AuthContext";
 
 export { Footer } from "./Footer";
-export { Events, AddEvent } from "./Events";
+export { Events } from "./Events";
+export { AddEvent } from "./Events";
 
 export { Users, EventUsers } from "./Users";
 export { Login } from "./Login";

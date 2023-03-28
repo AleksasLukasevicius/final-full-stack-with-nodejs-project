@@ -1,4 +1,10 @@
-import { type FC, useContext, useEffect, useState } from "react";
+import {
+  type FC,
+  FormEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   Button,
   Grid,
@@ -14,10 +20,11 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const Login: FC = () => {
+export const Login = () => {
   const { setAuth } = useContext(AuthContext);
-  const [admin_name, setUsername] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -25,7 +32,7 @@ export const Login: FC = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/login-admin", { admin_name, password })
+      .post("http://localhost:5000/login-admin", { username, password })
       .then((res) => {
         const accessToken = res.data.accessToken;
         setAuth(accessToken);
@@ -44,7 +51,7 @@ export const Login: FC = () => {
 
   useEffect(() => {
     setErrorMsg(false);
-  }, [admin_name, password]);
+  }, [username, password]);
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -86,7 +93,7 @@ export const Login: FC = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={admin_name}
+                value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>
