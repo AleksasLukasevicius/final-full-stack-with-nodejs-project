@@ -18,20 +18,20 @@ import { AuthContext } from "../AuthContext";
 
 export const LoginAdmin = () => {
   const { setAuth } = useContext(AuthContext);
-  const [username, setUsername] = useState<string>("");
+  const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMsg(false);
-  }, [username, password]);
+  }, [admin_name, password]);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/login-admin", { username, password })
+      .post("http://localhost:5000/login-admin", { admin_name, password })
       .then((res) => {
         const accessToken = res.data.accessToken;
         setAuth(accessToken);
@@ -88,7 +88,7 @@ export const LoginAdmin = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={username}
+                value={admin_name}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>

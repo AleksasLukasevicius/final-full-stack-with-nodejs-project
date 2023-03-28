@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { setAuth } = useContext(AuthContext);
-  const [username, setUsername] = useState<string>("");
+  const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/login-admin", { username, password })
+      .post("http://localhost:5000/login-admin", { admin_name, password })
       .then((res) => {
         const accessToken = res.data.accessToken;
         setAuth(accessToken);
@@ -51,7 +51,7 @@ export const Login = () => {
 
   useEffect(() => {
     setErrorMsg(false);
-  }, [username, password]);
+  }, [admin_name, password]);
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -93,7 +93,7 @@ export const Login = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={username}
+                value={admin_name}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>
