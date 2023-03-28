@@ -125,7 +125,7 @@ export const UpdateUser = () => {
           </Grid>
           <Grid item marginBottom={2}>
             <TextField
-              label="Surname"
+              label="surname"
               variant="outlined"
               required
               sx={{ width: 300 }}

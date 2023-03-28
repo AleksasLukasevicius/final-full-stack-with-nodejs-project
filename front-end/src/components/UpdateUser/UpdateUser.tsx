@@ -128,7 +128,7 @@ export const UpdateUser = () => {
 
           <Grid item>
             <TextField
-              aria-label="user lastname input"
+              aria-label="user surname input"
               label="Last Name"
               required
               variant="standard"
