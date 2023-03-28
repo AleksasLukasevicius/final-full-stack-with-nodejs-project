@@ -10,8 +10,8 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUsers } from "../RegisteredUsers/getUsers";
-import type { TUsers } from "../RegisteredUsers/types";
+import { getUsers } from "./getUsers";
+import type { TUsers } from "../Users/types";
 
 export const UsersTable = () => {
   const [users, setUsers] = useState<TUsers[]>([]);

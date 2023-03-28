@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getUsers } from "../RegisteredUsers/getUsers";
-import { TUsers } from "../RegisteredUsers/types";
+import { getUsers } from "./getUsers";
+import { TUsers } from "./types";
 import { UsersTable } from "./UsersTable";
 
 export const Users = () => {

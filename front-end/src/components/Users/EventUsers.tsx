@@ -37,28 +37,17 @@ export const EventUsers = () => {
   }, [id]);
 
   return (
-    <Box
-      sx={{
-        border: "1px solid black",
-        borderRadius: "10px",
-        width: "70%",
-        margin: "auto",
-      }}
+    <Grid
+      component="main"
+      container
+      display="flex"
+      direction="column"
+      alignItems="center"
+      margin="0 auto"
     >
-      <Typography
-        variant="h4"
-        textAlign="center"
-        sx={{
-          backgroundColor: "rgb(191, 145, 235)",
-          width: "98%",
-          padding: "20px",
-          margin: "10px 10px",
-          borderRadius: "10px",
-          boxSizing: "border-box",
-        }}
-      >
-        List of Registered Users
-      </Typography>
+      <Grid item>
+        <Typography variant="h2">Event users</Typography>
+      </Grid>
       <Grid
         display="grid"
         justifyContent="space-around"
@@ -69,34 +58,18 @@ export const EventUsers = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: "bold" }}>Full Name</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Birthday</TableCell>
+              <TableCell>Full Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Birthday</TableCell>
             </TableRow>
           </TableHead>
           {isLoading ? (
-            <TableBody>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell role="loading-message" sx={{ fontWeight: "bold" }}>
-                  Loading...
-                </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableBody>
+            <TableBody role="loading-message"> Loading...</TableBody>
           ) : (
             <TableBody>
               {users.map((user: any, id: number) => {
                 return (
-                  <TableRow
-                    sx={{
-                      "&:hover": { backgroundColor: "rgb(250, 245, 237)" },
-                    }}
-                    key={id}
-                  >
+                  <TableRow hover key={id}>
                     <TableCell>{`${user.name} ${user.last_name}`}</TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.birthdate.split("T", 1)}</TableCell>
@@ -107,6 +80,6 @@ export const EventUsers = () => {
           )}
         </Table>
       </Grid>
-    </Box>
+    </Grid>
   );
 };
