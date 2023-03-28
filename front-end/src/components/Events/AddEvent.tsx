@@ -1,4 +1,4 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,7 +6,7 @@ export const AddEvent = () => {
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<
     string | number | readonly string[] | undefined
-  >("2023-03-29");
+  >("2023-04-01");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
 
@@ -27,11 +27,11 @@ export const AddEvent = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         setSuccessMsg(true);
       })
       .catch((err) => {
@@ -48,6 +48,10 @@ export const AddEvent = () => {
       alignItems="center"
       margin="0 auto"
     >
+      <Grid item>
+        <Typography variant="h2">Add event</Typography>
+      </Grid>
+
       <Grid
         component="form"
         action="submit"

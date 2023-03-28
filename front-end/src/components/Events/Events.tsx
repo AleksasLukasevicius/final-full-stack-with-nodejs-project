@@ -1,15 +1,18 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getEvents } from "../utils/getEvents";
 import { EventsTable } from "./EventsTable";
-import type { TEvent } from "./types";
+import { getEvents } from "./getEvents";
+import { TEvent, TEvents } from "./types";
 
 export const Events = () => {
-  // const { events, dispatch } = useContext(EventsContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const [events, setEvents] = useState<TEvents[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const [events, setEvents] = useState<TEvent[]>([]);
+
+  const handleClick = (id: number) => {
+    navigate(`/events/${id}`);
+  };
 
   useEffect(() => {
     getEvents(setEvents, setIsLoading);

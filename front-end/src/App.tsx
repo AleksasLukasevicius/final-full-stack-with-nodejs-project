@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import {
   AuthContext,
   EventsContext,
@@ -21,7 +22,9 @@ export const App = () => {
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
       <EventsContext.Provider value={{ ...state, dispatch }}>
-        <MainRouter />
+        <BrowserRouter>
+          <MainRouter />
+        </BrowserRouter>
       </EventsContext.Provider>
     </AuthContext.Provider>
   );

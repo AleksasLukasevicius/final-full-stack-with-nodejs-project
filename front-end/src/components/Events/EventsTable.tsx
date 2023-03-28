@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getEvents } from "../utils/getEvents";
+import { getEvents } from "./getEvents";
 import type { TEvent } from "./types";
 
 export const EventsTable = () => {

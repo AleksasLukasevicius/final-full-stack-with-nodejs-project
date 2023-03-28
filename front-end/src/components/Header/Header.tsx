@@ -1,15 +1,14 @@
-import { Logo } from "../Logo/Logo";
+import { Box, Typography, Grid, Button } from "@mui/material";
+import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FC, useContext } from "react";
-import { Grid, Typography } from "@mui/material";
 import { AuthContext } from "../AuthContext";
+import { Logo } from "../Logo";
 
-export const Header: FC = () => {
+export const Header = () => {
   const { auth, setAuth } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
-  const handleLogOutClick = () => {
+  const handleSignOutClick = () => {
     setAuth("");
 
     sessionStorage.removeItem("accessToken");
@@ -27,6 +26,8 @@ export const Header: FC = () => {
       mt={2}
       mb={2}
       textTransform="none"
+      paddingBottom={1}
+      borderBottom={1}
     >
       <Grid item xs={12} sm={3} display="flex" justifyContent="center">
         <NavLink aria-label="logo link" to="/">
@@ -44,14 +45,6 @@ export const Header: FC = () => {
         justifyContent="space-evenly"
       >
         <Grid>
-          <NavLink to="/register">
-            <Typography aria-label="register user link" variant="button">
-              New User
-            </Typography>
-          </NavLink>
-        </Grid>
-
-        <Grid>
           <NavLink to="/events">
             <Typography aria-label="events link" variant="button">
               Events
@@ -63,6 +56,14 @@ export const Header: FC = () => {
           <NavLink to="/users">
             <Typography aria-label="users link" variant="button">
               Users
+            </Typography>
+          </NavLink>
+        </Grid>
+
+        <Grid>
+          <NavLink to="/register">
+            <Typography aria-label="register user link" variant="button">
+              New User
             </Typography>
           </NavLink>
         </Grid>
@@ -91,7 +92,7 @@ export const Header: FC = () => {
             <Typography
               aria-label="logout link"
               variant="button"
-              onClick={handleLogOutClick}
+              onClick={handleSignOutClick}
             >
               Log out
             </Typography>

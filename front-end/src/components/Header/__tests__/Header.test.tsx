@@ -4,42 +4,36 @@ import { Header } from "../Header";
 import renderer from "react-test-renderer";
 
 describe("Header", () => {
-  it.skip("should render Header naviagations links", () => {
+  it("should render Header", () => {
     render(
       <BrowserRouter>
-        (<Header />
-        );
+        <Header />
       </BrowserRouter>
     );
 
-    expect(screen.getByLabelText("home link")).toBeVisible();
-    expect(screen.getByLabelText("products link")).toBeVisible();
-    expect(screen.getByLabelText("cart link")).toBeVisible();
+    expect(screen.getByText("Make your life happier")).toBeInTheDocument();
   });
 
-  it.each(["home link", "products link", "cart link"])(
-    "should render Header naviagation %s",
+  it("matches snapshot", () => {
+    const tree = renderer.create(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it.each(["events link", "users link", "register new user link"])(
+    "should render %s",
     (link) => {
       render(
         <BrowserRouter>
-          (<Header />
-          );
+          <Header />
         </BrowserRouter>
       );
 
       expect(screen.getByLabelText(link)).toBeVisible();
     }
   );
-
-  it("matches snapshot", () => {
-    const tree = renderer
-      .create(
-        <BrowserRouter>
-          (<Header />
-          );
-        </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
 });
