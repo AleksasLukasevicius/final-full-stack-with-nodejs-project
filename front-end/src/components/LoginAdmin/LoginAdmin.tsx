@@ -1,37 +1,35 @@
 import {
-  Box,
   Button,
   FormControl,
   Grid,
-  IconButton,
   Input,
-  InputAdornment,
   InputLabel,
-  TextField,
   Typography,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
-// import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 export const LoginAdmin = () => {
   const { setAuth } = useContext(AuthContext);
-  const [username, setUsername] = useState<string>("");
+  const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMsg(false);
-  }, [username, password]);
+  }, [admin_name, password]);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/login-admin", { username, password })
+      .post("http://localhost:5000/login-admin", { admin_name, password })
       .then((res) => {
         const accessToken = res.data.accessToken;
         setAuth(accessToken);
@@ -88,7 +86,7 @@ export const LoginAdmin = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={username}
+                value={admin_name}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>
@@ -107,17 +105,17 @@ export const LoginAdmin = () => {
                 autoComplete="current password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                // endAdornment={
-                //   <InputAdornment position="end">
-                //     <IconButton
-                //       aria-label="toggle password visibility"
-                //       onClick={handleClickShowPassword}
-                //       onMouseDown={handleMouseDownPassword}
-                //     >
-                //       {showPassword ? <VisibilityOff /> : <Visibility />}
-                //     </IconButton>
-                //   </InputAdornment>
-                // }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </FormControl>
           </Grid>

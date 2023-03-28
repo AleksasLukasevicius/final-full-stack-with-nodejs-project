@@ -10,13 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 
 export const AdminRegister = () => {
-  // const { events, dispatch } = useContext(EventsContext);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
-  const [username, setUsername] = useState<string>("");
+  const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
@@ -36,7 +33,7 @@ export const AdminRegister = () => {
       .post(
         "http://localhost:5000/admin-users",
         {
-          username,
+          admin_name,
         },
         {
           headers: {
@@ -56,7 +53,7 @@ export const AdminRegister = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [username]);
+  }, [admin_name]);
 
   return (
     <Grid
@@ -90,7 +87,7 @@ export const AdminRegister = () => {
               <Input
                 aria-label="manager name input"
                 required
-                value={username}
+                value={admin_name}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </FormControl>

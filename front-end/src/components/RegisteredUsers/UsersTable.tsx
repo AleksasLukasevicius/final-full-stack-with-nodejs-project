@@ -15,7 +15,7 @@ import type { TUsers } from "./types";
 
 export const UsersTable = () => {
   const [users, setUsers] = useState<TUsers[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ export const UsersTable = () => {
             return (
               <TableRow hover key={user.id}>
                 <TableCell>{`${user.name || ""} ${
-                  user.surname || ""
+                  user.last_name || ""
                 }`}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.birthdate.split("T", 1)}</TableCell>
