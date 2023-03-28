@@ -10,8 +10,8 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUsers } from "../utils/getUsers";
-import type { TUsers } from "./types";
+import { getUsers } from "../RegisteredUsers/getUsers";
+import type { TUsers } from "../RegisteredUsers/types";
 
 export const UsersTable = () => {
   const [users, setUsers] = useState<TUsers[]>([]);
@@ -27,12 +27,11 @@ export const UsersTable = () => {
     axios
       .delete(`http://localhost:5000/users/${id}`, {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
         },
       })
       .then(() => {
         getUsers(setUsers, setIsLoading);
-        alert("User deleted");
       })
       .catch((error: any) => console.error(error));
   };
@@ -46,12 +45,12 @@ export const UsersTable = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Full Name</TableCell>
+            <TableCell>XXX Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Birthday</TableCell>
             <TableCell>Event</TableCell>
             <TableCell>Delete</TableCell>
-            <TableCell>Update</TableCell>
+            <TableCell>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -71,7 +70,7 @@ export const UsersTable = () => {
                 </TableCell>
                 <TableCell>
                   <Button onClick={() => handleUpdateButton(user.id)}>
-                    Update
+                    Edit
                   </Button>
                 </TableCell>
               </TableRow>

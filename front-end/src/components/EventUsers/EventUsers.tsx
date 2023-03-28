@@ -46,7 +46,7 @@ export const EventUsers = () => {
       margin="0 auto"
     >
       <Grid item>
-        <Typography variant="h2">Event users</Typography>
+        <Typography variant="h2">Event users XXX</Typography>
       </Grid>
       <Grid
         display="grid"
