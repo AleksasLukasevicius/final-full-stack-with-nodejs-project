@@ -11,7 +11,7 @@ import { NotFoundPage } from "../NotFoundPage";
 import { Register } from "../Register";
 import { AdminRegister } from "../Register/AdminRegister";
 import { Users } from "../RegisteredUsers/Users";
-import { UpdateUser } from "../UpdateUser";
+import { EditUser } from "../Users";
 import { Layout } from "./Layout";
 
 export const MainRouter = () => {
@@ -35,7 +35,7 @@ export const MainRouter = () => {
           <Route element={<RequireAuth />}>
             <Route path="/register" element={<Register />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/user/:id" element={<UpdateUser />} />
+            <Route path="/user/:id" element={<EditUser />} />
             <Route path="/events" element={<Events />} />
             <Route path="/add-event" element={<AddEvent />} />
             <Route path="/events/:id" element={<EventUsers />} />
