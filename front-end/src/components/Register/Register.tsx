@@ -121,6 +121,7 @@ export const Register = () => {
         <Grid
           container
           flexDirection="column"
+          alignItems="center"
           component="fieldset"
           border="none"
           spacing={2}
@@ -172,8 +173,8 @@ export const Register = () => {
               sx={{ width: 182 }}
               variant="standard"
               inputProps={{
-                min: "1900-01-01",
-                max: "2020-01-01",
+                min: "1923-01-01",
+                max: "2013-01-01",
               }}
               value={birthdate}
               onChange={(e) => {
@@ -198,6 +199,7 @@ export const Register = () => {
             <Autocomplete
               disablePortal
               options={eventName}
+              sx={{ width: 182 }}
               onChange={handleEventChange}
               renderInput={(params) => <TextField {...params} label="Events" />}
             />
