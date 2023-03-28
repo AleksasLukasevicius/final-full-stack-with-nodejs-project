@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -188,7 +188,7 @@ export const UpdateUser = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully added in</Typography>
+        <Typography color="success">Successfully editted</Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}
