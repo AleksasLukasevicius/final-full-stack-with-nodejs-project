@@ -59,7 +59,7 @@ export const UsersTable = () => {
             return (
               <TableRow hover key={user.id}>
                 <TableCell>{`${user.name || ""} ${
-                  user.surname || ""
+                  user.last_name || ""
                 }`}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.birthdate.split("T", 1)}</TableCell>

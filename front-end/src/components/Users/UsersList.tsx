@@ -22,7 +22,7 @@ export const UsersList = () => {
       editable: true,
     },
     {
-      field: "surname",
+      field: "last_name",
       headerName: "Last name",
       width: 150,
       editable: true,
@@ -41,7 +41,7 @@ export const UsersList = () => {
       sortable: false,
       width: 160,
       valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ""} ${params.row.surname || ""}`,
+        `${params.row.firstName || ""} ${params.row.last_name || ""}`,
     },
     {
       field: "email",
@@ -58,15 +58,15 @@ export const UsersList = () => {
   ];
 
   const rows = [
-    { id: 1, surname: "Snow", firstName: "Jon", age: 35, update: "update" },
-    { id: 2, surname: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, surname: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, surname: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, surname: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, surname: "Melisandre", firstName: null, age: 150 },
-    { id: 7, surname: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, surname: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, surname: "Roxie", firstName: "Harvey", age: 65 },
+    { id: 1, last_name: "Snow", firstName: "Jon", age: 35, update: "update" },
+    { id: 2, last_name: "Lannister", firstName: "Cersei", age: 42 },
+    { id: 3, last_name: "Lannister", firstName: "Jaime", age: 45 },
+    { id: 4, last_name: "Stark", firstName: "Arya", age: 16 },
+    { id: 5, last_name: "Targaryen", firstName: "Daenerys", age: null },
+    { id: 6, last_name: "Melisandre", firstName: null, age: 150 },
+    { id: 7, last_name: "Clifford", firstName: "Ferrara", age: 44 },
+    { id: 8, last_name: "Frances", firstName: "Rossini", age: 36 },
+    { id: 9, last_name: "Roxie", firstName: "Harvey", age: 65 },
   ];
 
   return (
