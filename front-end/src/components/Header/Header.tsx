@@ -20,16 +20,8 @@ export const Header: FC = () => {
   };
 
   return (
-    <Grid component="header" container>
-      <Grid
-        item
-        xs={12}
-        sm={3}
-        display="flex"
-        justifyContent="center"
-        mt={1}
-        mb={1}
-      >
+    <Grid component="header" container alignItems="center" mt={2} mb={2}>
+      <Grid item xs={12} sm={3} display="flex" justifyContent="center">
         <NavLink aria-label="logo link" to="/">
           <Logo />
         </NavLink>
