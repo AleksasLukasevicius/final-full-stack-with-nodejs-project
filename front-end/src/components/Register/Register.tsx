@@ -1,5 +1,6 @@
 import {
   Autocomplete,
+  Box,
   Button,
   Grid,
   TextField,
@@ -11,7 +12,7 @@ import { TEvent } from "../Events/types";
 
 export const Register = () => {
   const [name, setName] = useState<string>("");
-  const [last_name, setSurname] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [birthdate, setBirthdate] = useState<
     string | number | readonly string[] | undefined
@@ -59,7 +60,7 @@ export const Register = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [name, last_name, email, birthdate]);
+  }, [name, surname, email, birthdate]);
 
   useEffect(() => {
     axios
@@ -82,7 +83,7 @@ export const Register = () => {
         "http://localhost:5000/users",
         {
           name,
-          last_name,
+          surname,
           email,
           birthdate,
           event_id,
@@ -143,11 +144,11 @@ export const Register = () => {
 
           <Grid item>
             <TextField
-              aria-label="user last_name input"
+              aria-label="user surname input"
               label="Last Name"
               required
               variant="standard"
-              value={last_name}
+              value={surname}
               onChange={(event) => setSurname(event.target.value)}
             />
           </Grid>

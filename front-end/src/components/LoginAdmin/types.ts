@@ -1,4 +1,4 @@
 export type TLoginAdmin = {
-  admin_name: string | null;
+  username: string | null;
   password: string | null;
 };

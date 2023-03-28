@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export const UpdateUser = () => {
   const [name, setName] = useState<string>("");
-  const [last_name, setSurname] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [birthdate, setBirthdate] = useState<
     string | number | readonly string[] | undefined
@@ -19,7 +19,7 @@ export const UpdateUser = () => {
 
   const setStateValues = (user: any) => {
     setName(user[0].name);
-    setSurname(user[0].last_name);
+    setSurname(user[0].surname);
     setEmail(user[0].email);
     setBirthdate(user[0].birthdate.toLocaleString("en-US").split("T", 1));
     setUsersEventName(user[0].event_name);
@@ -29,7 +29,7 @@ export const UpdateUser = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [name, last_name, email, birthdate]);
+  }, [name, surname, email, birthdate]);
 
   useEffect(() => {
     axios
@@ -67,7 +67,7 @@ export const UpdateUser = () => {
         `http://localhost:5000/users/${id}`,
         {
           name,
-          last_name,
+          surname,
           email,
           birthdate,
           event_id,
@@ -125,11 +125,11 @@ export const UpdateUser = () => {
           </Grid>
           <Grid item marginBottom={2}>
             <TextField
-              label="last_name"
+              label="surname"
               variant="outlined"
               required
               sx={{ width: 300 }}
-              value={last_name ?? ""}
+              value={surname ?? ""}
               onChange={(e) => setSurname(e.target.value)}
             />
           </Grid>
