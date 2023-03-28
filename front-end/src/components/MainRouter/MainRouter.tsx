@@ -11,7 +11,7 @@ import { NotFoundPage } from "../NotFoundPage";
 import { Register } from "../Register";
 import { AdminRegister } from "../Register/AdminRegister";
 import { Users } from "../RegisteredUsers/Users";
-import { UpdateUser } from "../Users";
+import { UpdateUser } from "../UpdateUser";
 import { Layout } from "./Layout";
 
 export const MainRouter = () => {
