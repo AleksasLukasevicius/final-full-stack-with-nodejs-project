@@ -51,7 +51,7 @@ export const getEvents = async (req, res) => {
 export const getUsersByEventId = async (req, res) => {
   const { eventId } = req.params;
 
-  const query = `SELECT eventsdb.users.name, eventsdb.users.surname, eventsdb.users.email, eventsdb.users.birthdate FROM eventsdb.users INNER JOIN eventsdb.events ON eventsdb.events.id = eventsdb.users.event_id WHERE eventsdb.events.id = '${eventId}' ORDER BY eventsdb.users.id`;
+  const query = `SELECT eventsdb.users.name, eventsdb.users.last_name, eventsdb.users.email, eventsdb.users.birthdate FROM eventsdb.users INNER JOIN eventsdb.events ON eventsdb.events.id = eventsdb.users.event_id WHERE eventsdb.events.id = '${eventId}' ORDER BY eventsdb.users.id`;
 
   try {
     const con = await mysql.createConnection(mysqlConfig);

@@ -19,8 +19,8 @@ export const loginAdmin = async (req, res) => {
     const con = await mysql.createConnection(mysqlConfig);
 
     const [data] = await con.execute(
-      `SELECT * FROM eventsdb.admin_users WHERE username = ${mysql.escape(
-        userData.username
+      `SELECT * FROM eventsdb.admin_users WHERE admin_name = ${mysql.escape(
+        userData.admin_name
       )}`
     );
 
@@ -29,7 +29,7 @@ export const loginAdmin = async (req, res) => {
     if (data.length === 0) {
       return res
         .status(400)
-        .send({ error: "Incorect username or password" })
+        .send({ error: "Incorect admin_name or password" })
         .end();
     }
 
@@ -38,7 +38,7 @@ export const loginAdmin = async (req, res) => {
 
     if (isAuthed) {
       const accessToken = jwt.sign(
-        { id: data[0].id, username: data[0].username },
+        { id: data[0].id, admin_name: data[0].admin_name },
         jwtSecret
       );
 

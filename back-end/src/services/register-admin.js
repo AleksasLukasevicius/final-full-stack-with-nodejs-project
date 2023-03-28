@@ -20,8 +20,8 @@ export const registerAdmin = async (req, res) => {
     const con = await mysql.createConnection(mysqlConfig);
 
     const [data] = await con.execute(
-      `INSERT INTO eventsdb.admin_users (username, password) VALUES (${mysql.escape(
-        userData.username
+      `INSERT INTO eventsdb.admin_users (admin_name, password) VALUES (${mysql.escape(
+        userData.admin_name
       )}, '${hashedPassword}')`
     );
 
