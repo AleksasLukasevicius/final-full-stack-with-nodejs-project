@@ -13,9 +13,9 @@ export const registerUser = async (req, res) => {
     return res.status(400).send({ error: "Incorrect user data" }).end();
   }
 
-  const query = `INSERT INTO eventsdb.users (name, surname, email, birthdate, event_name, event_id) VALUES (${mysql.escape(
+  const query = `INSERT INTO eventsdb.users (name, last_name, email, birthdate, event_name, event_id) VALUES (${mysql.escape(
     userData.name
-  )}, ${mysql.escape(userData.surname)}, ${mysql.escape(
+  )}, ${mysql.escape(userData.last_name)}, ${mysql.escape(
     userData.email
   )}, ${mysql.escape(userData.birthdate)}, ${mysql.escape(
     userData.event_name
@@ -106,7 +106,7 @@ export const updateUser = async (req, res) => {
 
   const query = `UPDATE eventsdb.users SET name = ${mysql.escape(
     userData.name
-  )}, surname = ${mysql.escape(userData.surname)}, email = ${mysql.escape(
+  )}, last_name = ${mysql.escape(userData.last_name)}, email = ${mysql.escape(
     userData.email
   )}, birthdate = ${mysql.escape(
     userData.birthdate

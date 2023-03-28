@@ -1,19 +1,10 @@
-import { Box } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import type { FC } from "react";
+import { Box, Typography } from "@mui/material";
 
-export const Footer: FC = () => {
-  const currentYear = new Date().getFullYear();
-
+export const Footer = () => {
   return (
-    <Box component="footer" marginTop="auto">
-      <Typography
-        aria-label="current year"
-        variant="h6"
-        color="textSecondary"
-        align="center"
-      >
-        {`© ${currentYear} - All rights reserved`}
+    <Box component="footer" sx={{ paddingTop: 5 }}>
+      <Typography component="p">
+        Copyright © Register to events. All rights reserved.
       </Typography>
     </Box>
   );
