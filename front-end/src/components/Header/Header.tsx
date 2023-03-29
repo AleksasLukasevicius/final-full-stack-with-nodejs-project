@@ -1,6 +1,6 @@
-import { Box, Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { Logo } from "../Logo";
 
@@ -8,13 +8,13 @@ export const Header = () => {
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSignOutClick = () => {
+  const handleLogOutClick = () => {
     setAuth("");
 
     sessionStorage.removeItem("accessToken");
   };
 
-  const handleSignInClick = () => {
+  const handleLogInClick = () => {
     navigate("/");
   };
 
@@ -81,7 +81,7 @@ export const Header = () => {
           <Typography
             aria-label="login link"
             variant="button"
-            onClick={handleSignInClick}
+            onClick={handleLogInClick}
           >
             Login
           </Typography>
@@ -92,7 +92,7 @@ export const Header = () => {
             <Typography
               aria-label="logout link"
               variant="button"
-              onClick={handleSignOutClick}
+              onClick={handleLogOutClick}
             >
               Log out
             </Typography>

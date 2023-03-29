@@ -12,4 +12,4 @@ export { Logo } from "./Logo";
 export { Home } from "./Home";
 export { Header } from "./Header";
 export { NotFoundPage } from "./NotFoundPage";
-export { Register } from "./Register";
+export { UserRegister } from "./Register";
