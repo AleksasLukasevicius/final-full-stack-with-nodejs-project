@@ -10,11 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { FormEventHandler, useEffect, useState } from "react";
+import { useEffect, useState, FormEventHandler } from "react";
 
 export const AdminRegister = () => {
-  const [admin_name, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -24,33 +22,30 @@ export const AdminRegister = () => {
   ) => {
     event.preventDefault();
   };
+  const [userData, setUserData] = useState({ admin_name: "", password: "" });
+  const handleUserDataChange = (
+    value: string,
+    key: "admin_name" | "password"
+  ) => {
+    setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
+  };
 
-  console.info(admin_name, password);
+  console.log(userData);
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:5000/register-admin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({
-          admin_name: admin_name,
-          password: password,
-        }),
-      })
-      .then((res) => {
-        setSuccessMsg(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMsg(true);
-      });
   };
+
+  const { admin_name, password } = userData;
 
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [admin_name, password]);
+  }, [userData]);
+
+  const setUsername = (name: string) => {
+    setUserData({ ...userData, admin_name: name });
+  };
 
   return (
     <Grid
@@ -79,29 +74,29 @@ export const AdminRegister = () => {
           </Typography>
 
           <Grid item>
-            <FormControl>
-              <InputLabel htmlFor="manager name input">Name</InputLabel>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="admin_name">Admin name</InputLabel>
               <Input
-                aria-label="manager name input"
-                required
+                id="admin_name"
+                type="text"
                 value={admin_name}
-                onChange={(event) => setUsername(event.target.value)}
+                onChange={(e) =>
+                  handleUserDataChange(e.target.value, "admin_name")
+                }
               />
             </FormControl>
           </Grid>
 
           <Grid item>
-            <FormControl variant="standard">
-              <InputLabel htmlFor="standard adornment password">
-                Password
-              </InputLabel>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
               <Input
-                aria-label="manager password input"
+                id="password"
                 type={showPassword ? "text" : "password"}
-                sx={{ width: 182 }}
-                required
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={(e) =>
+                  handleUserDataChange(e.target.value, "password")
+                }
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -109,7 +104,7 @@ export const AdminRegister = () => {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }
