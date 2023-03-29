@@ -61,8 +61,8 @@ export const AdminRegister = () => {
     >
       <Grid
         component="form"
-        action="submit"
-        method="post"
+        // action="submit"
+        // method="post"
         onSubmit={handleFormSubmit}
       >
         <Grid
@@ -117,7 +117,9 @@ export const AdminRegister = () => {
           </Grid>
 
           <Grid item>
-            <Button variant="outlined">Add Admin</Button>
+            <Button variant="outlined" type="submit">
+              Add Admin
+            </Button>
           </Grid>
         </Grid>
       </Grid>
