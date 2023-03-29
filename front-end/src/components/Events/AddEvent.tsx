@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,7 +6,7 @@ export const AddEvent = () => {
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<
     string | number | readonly string[] | undefined
-  >("2023-04-01");
+  >(`${new Date().toISOString().slice(0, 10)}`);
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
 
@@ -60,8 +60,9 @@ export const AddEvent = () => {
       >
         <Grid
           container
-          flexDirection="column"
           component="fieldset"
+          flexDirection="column"
+          alignItems="center"
           border="none"
           spacing={2}
           width="50rem"
@@ -84,7 +85,7 @@ export const AddEvent = () => {
               variant="standard"
               sx={{ width: 182 }}
               inputProps={{
-                min: "2021-01-01",
+                min: "2023-03-30",
                 max: "2050-01-01",
               }}
               value={date ?? ""}

@@ -13,8 +13,15 @@ import axios from "axios";
 import { FormEventHandler, useEffect, useState } from "react";
 
 export const AdminRegister = () => {
-  const [admin_name, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [userData, setUserData] = useState({ admin_name: "", password: "" });
+
+  const handleUserDataChange = (
+    value: string,
+    key: "admin_name" | "password"
+  ) => {
+    setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
+  };
+
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +32,8 @@ export const AdminRegister = () => {
     event.preventDefault();
   };
 
+  console.info(userData);
+
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     axios
@@ -32,8 +41,8 @@ export const AdminRegister = () => {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=UTF-8" },
         body: JSON.stringify({
-          admin_name,
-          password,
+          admin_name: userData.admin_name,
+          password: userData.password,
         }),
       })
       .then((res) => {
@@ -49,7 +58,7 @@ export const AdminRegister = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [admin_name, password]);
+  }, [userData]);
 
   return (
     <Grid
@@ -61,8 +70,9 @@ export const AdminRegister = () => {
     >
       <Grid
         component="form"
-        action="submit"
-        method="post"
+        container
+        direction="column"
+        alignItems="center"
         onSubmit={handleFormSubmit}
       >
         <Grid
@@ -79,12 +89,16 @@ export const AdminRegister = () => {
 
           <Grid item>
             <FormControl>
-              <InputLabel htmlFor="manager name input">Name</InputLabel>
+              <InputLabel htmlFor="manager admin_name input">
+                Admin name
+              </InputLabel>
               <Input
-                aria-label="manager name input"
+                aria-label="manager admin_name input"
                 required
-                value={admin_name}
-                onChange={(event) => setUsername(event.target.value)}
+                value={userData.admin_name}
+                onChange={(event) =>
+                  handleUserDataChange(event.target.value, "admin_name")
+                }
               />
             </FormControl>
           </Grid>
@@ -99,8 +113,10 @@ export const AdminRegister = () => {
                 type={showPassword ? "text" : "password"}
                 sx={{ width: 182 }}
                 required
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                value={userData.password}
+                onChange={(event) =>
+                  handleUserDataChange(event.target.value, "password")
+                }
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton

@@ -17,11 +17,11 @@ export const MainRouter: FC = () => {
   return (
     <Grid
       container
-      display={"flex"}
-      flexDirection={"column"}
-      alignItems={"center"}
-      maxWidth={"75vw"}
-      minHeight={"100vh"}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      maxWidth="75vw"
+      minHeight="100vh"
       margin={"0 auto"}
     >
       <Header />

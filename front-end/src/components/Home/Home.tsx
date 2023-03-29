@@ -1,15 +1,13 @@
 import { Grid, Typography } from "@mui/material";
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 
 export const Home = () => {
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
 
   return (
     <Grid>
-      <Outlet />
-
       <Typography variant="h2">Welcome to the Events App</Typography>
 
       {!auth ? (
