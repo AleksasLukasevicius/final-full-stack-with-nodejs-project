@@ -10,18 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 
 export const AdminRegister = () => {
   // const { events, dispatch } = useContext(EventsContext);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("YYYY-MM-DD"));
   const [admin_name, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -33,7 +29,7 @@ export const AdminRegister = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/admin-users", {
+      .post("http://localhost:5000/register-admin", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=UTF-8" },
         body: JSON.stringify({
@@ -128,7 +124,7 @@ export const AdminRegister = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully logged in</Typography>
+        <Typography color="success">Successfully registered in</Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}
