@@ -8,6 +8,8 @@ export const Home = () => {
 
   return (
     <Grid>
+      <Outlet />
+
       <Typography variant="h2">Welcome to the Events App</Typography>
 
       {!auth ? (
