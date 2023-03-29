@@ -33,7 +33,7 @@ export const AdminRegister = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/admin-users", {
+      .post("http://localhost:5000/register-admin", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=UTF-8" },
         body: JSON.stringify({
@@ -53,7 +53,7 @@ export const AdminRegister = () => {
   useEffect(() => {
     setErrorMsg(false);
     setSuccessMsg(false);
-  }, [admin_name]);
+  }, [admin_name, password]);
 
   return (
     <Grid
@@ -128,7 +128,7 @@ export const AdminRegister = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully logged in</Typography>
+        <Typography color="success">Successfully registered in</Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}
