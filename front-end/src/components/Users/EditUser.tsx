@@ -188,7 +188,7 @@ export const EditUser = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully editted</Typography>
+        <Typography color="success">User successfully editted.</Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}

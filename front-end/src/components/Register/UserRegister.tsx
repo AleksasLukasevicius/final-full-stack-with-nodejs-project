@@ -15,7 +15,8 @@ export const UserRegister = () => {
   const [email, setEmail] = useState<string>("");
   const [birthdate, setBirthdate] = useState<
     string | number | readonly string[] | undefined
-  >("2023-04-01");
+  >(`${new Date().toISOString().slice(0, 10)}`);
+
   const [age, setAge] = useState<number>(0);
   const [events, setEvents] = useState<string[]>([]);
   const [event_id, setEvent_id] = useState<number>(0);
@@ -213,7 +214,7 @@ export const UserRegister = () => {
       </Grid>
 
       {successMsg ? (
-        <Typography color="success">Successfully added in</Typography>
+        <Typography color="success">New user successfully added. </Typography>
       ) : (
         errorMsg && <Typography color="error">{errorMsg}</Typography>
       )}
