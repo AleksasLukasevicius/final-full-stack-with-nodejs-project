@@ -16,15 +16,15 @@ export const loginAdmin = async (req, res) => {
   }
 
   try {
-    const con = await mysql.createConnection(mysqlConfig);
+    const connection = await mysql.createConnection(mysqlConfig);
 
-    const [data] = await con.execute(
+    const [data] = await connection.execute(
       `SELECT * FROM eventsdb.admin_users WHERE admin_name = ${mysql.escape(
         userData.admin_name
       )}`
     );
 
-    await con.end();
+    await connection.end();
 
     if (data.length === 0) {
       return res

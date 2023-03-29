@@ -17,15 +17,15 @@ export const registerAdmin = async (req, res) => {
   try {
     const hashedPassword = bcrypt.hashSync(userData.password);
 
-    const con = await mysql.createConnection(mysqlConfig);
+    const connection = await mysql.createConnection(mysqlConfig);
 
-    const [data] = await con.execute(
+    const [data] = await connection.execute(
       `INSERT INTO eventsdb.admin_users (admin_name, password) VALUES (${mysql.escape(
         userData.admin_name
       )}, '${hashedPassword}')`
     );
 
-    await con.end();
+    await connection.end();
 
     return res.status(200).send(data).end();
   } catch (error) {
