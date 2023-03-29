@@ -8,13 +8,13 @@ export const Header = () => {
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogOutClick = () => {
+  const handleSignOutClick = () => {
     setAuth("");
 
     sessionStorage.removeItem("accessToken");
   };
 
-  const handleLogInClick = () => {
+  const handleSignInClick = () => {
     navigate("/");
   };
 
@@ -81,7 +81,7 @@ export const Header = () => {
           <Typography
             aria-label="login link"
             variant="button"
-            onClick={handleLogInClick}
+            onClick={handleSignInClick}
           >
             Login
           </Typography>
@@ -92,7 +92,7 @@ export const Header = () => {
             <Typography
               aria-label="logout link"
               variant="button"
-              onClick={handleLogOutClick}
+              onClick={handleSignOutClick}
             >
               Log out
             </Typography>
