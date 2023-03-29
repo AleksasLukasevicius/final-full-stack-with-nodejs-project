@@ -6,6 +6,8 @@ Due March 29, 2023 6:00 PM Closes March 29, 2023 6:00 PM
 
 ## Baigiamasis projektas
 
+Login: Alex Psw: Alex
+
 Šios projekto metu reikės sukurti programą naudojant React, NodeJS Express ir MongoDB arba MySQL. Programos tikslas - leisti renginių organizavimu užsiimančiai įmonei, registruoti telefonu paskambinusius asmenis į renginį.
 
 Renginių organizatorius, prisijungęs prie programos, matys:
