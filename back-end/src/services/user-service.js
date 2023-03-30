@@ -52,7 +52,7 @@ export const getUsers = async (_, res) => {
   }
 };
 
-export const getSpecificUser = async (req, res) => {
+export const getUser = async (req, res) => {
   const { id } = req.params;
 
   try {

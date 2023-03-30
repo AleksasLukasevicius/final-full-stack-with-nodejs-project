@@ -1,6 +1,6 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const EditUser = () => {
@@ -52,16 +52,16 @@ export const EditUser = () => {
     const today = new Date();
     const birthDate = new Date(date);
     let age = today.getFullYear() - birthDate.getFullYear();
-    // const month = today.getMonth() - birthDate.getMonth();
-    // if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-    //   age--;
-    // }
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
     setAge(age);
     return age;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
     axios
       .patch(
         `http://localhost:5000/users/${id}`,
@@ -100,7 +100,7 @@ export const EditUser = () => {
         component="form"
         action="submit"
         method="post"
-        onSubmit={handleSubmit}
+        onSubmit={handleFormSubmit}
       >
         <Grid
           container

@@ -2,16 +2,16 @@ import { Router } from "express";
 import { isLoggedIn } from "../services/token-middleware.js";
 import {
   deleteUser,
-  getSpecificUser,
+  getUser,
   getUsers,
   registerUser,
   updateUser,
-} from "../services/user-services.js";
+} from "../services/user-service.js";
 
 export const userRouter = Router();
 
 userRouter.get("/", isLoggedIn, getUsers);
-userRouter.get("/:id", isLoggedIn, getSpecificUser);
+userRouter.get("/:id", isLoggedIn, getUser);
 userRouter.post("/", isLoggedIn, registerUser);
 userRouter.delete("/:id", isLoggedIn, deleteUser);
 userRouter.patch("/:id", isLoggedIn, updateUser);

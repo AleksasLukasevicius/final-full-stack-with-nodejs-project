@@ -45,7 +45,7 @@ export const UsersTable = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>XXX Name</TableCell>
+            <TableCell>User Full Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Birthday</TableCell>
             <TableCell>Event</TableCell>
@@ -64,13 +64,13 @@ export const UsersTable = () => {
                 <TableCell>{user.birthdate.split("T", 1)}</TableCell>
                 <TableCell>{user.event_name}</TableCell>
                 <TableCell>
-                  <Button onClick={() => handleDeleteButton(user.id)}>
-                    Delete
+                  <Button onClick={() => handleUpdateButton(user.id)}>
+                    Edit
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => handleUpdateButton(user.id)}>
-                    Edit
+                  <Button onClick={() => handleDeleteButton(user.id)}>
+                    Delete
                   </Button>
                 </TableCell>
               </TableRow>
