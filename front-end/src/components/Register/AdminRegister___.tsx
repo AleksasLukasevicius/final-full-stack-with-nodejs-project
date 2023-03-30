@@ -69,8 +69,9 @@ export const AdminRegister = () => {
       margin="0 auto"
     >
       <Grid
-        component="form"
         container
+        component="form"
+        method="post"
         direction="column"
         alignItems="center"
         onSubmit={handleFormSubmit}
@@ -133,7 +134,9 @@ export const AdminRegister = () => {
           </Grid>
 
           <Grid item>
-            <Button variant="outlined">Add Admin</Button>
+            <Button type="submit" variant="outlined">
+              Add Admin
+            </Button>
           </Grid>
         </Grid>
       </Grid>

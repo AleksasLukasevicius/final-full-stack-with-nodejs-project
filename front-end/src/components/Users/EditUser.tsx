@@ -99,7 +99,7 @@ export const EditUser = () => {
       <Grid
         component="form"
         action="submit"
-        method="post"
+        method="patch"
         onSubmit={handleFormSubmit}
       >
         <Grid
