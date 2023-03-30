@@ -77,16 +77,6 @@ export const Header = () => {
         display="flex"
         justifyContent="space-evenly"
       >
-        <NavLink to="/login">
-          <Typography
-            aria-label="login link"
-            variant="button"
-            onClick={handleSignInClick}
-          >
-            Login
-          </Typography>
-        </NavLink>
-
         <NavLink to="/">
           {auth ? (
             <Typography
@@ -96,7 +86,17 @@ export const Header = () => {
             >
               Log out
             </Typography>
-          ) : null}
+          ) : (
+            <NavLink to="/login">
+              <Typography
+                aria-label="login link"
+                variant="button"
+                onClick={handleSignInClick}
+              >
+                Login
+              </Typography>
+            </NavLink>
+          )}
         </NavLink>
       </Grid>
     </Grid>

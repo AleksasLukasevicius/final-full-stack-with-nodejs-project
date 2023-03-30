@@ -61,8 +61,8 @@ export const AdminRegister = () => {
     >
       <Grid
         component="form"
-        // action="submit"
-        // method="post"
+        action="submit"
+        method="post"
         onSubmit={handleFormSubmit}
       >
         <Grid
